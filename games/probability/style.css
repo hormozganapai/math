@@ -1,0 +1,222 @@
+/* دنیای احتمال — استایل اختصاصی بازی */
+
+.game-body{ padding-bottom: 60px; }
+
+.game-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(246,248,252,.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.game-header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  flex-wrap: wrap;
+}
+.back-link{
+  font-weight: 700;
+  color: var(--violet-dark);
+  font-size: 0.92rem;
+}
+.game-title{
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin: 0;
+}
+.score-pill{
+  background: var(--grad-hero);
+  color: #fff;
+  font-weight: 800;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+}
+
+.game-main{ padding-top: 30px; max-width: 760px; }
+
+/* نوار مراحل */
+.step-tracker{
+  display: flex;
+  gap: 10px;
+  margin: 0 0 28px;
+  padding: 0;
+}
+.step-tracker .step{
+  flex: 1;
+  text-align: center;
+  padding: 12px 8px;
+  border-radius: var(--radius-md);
+  background: #fff;
+  border: 2px solid var(--line);
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.step-tracker .step-num{
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+.step-tracker .step.active{
+  border-color: var(--violet);
+  color: var(--violet-dark);
+  background: #F3EEFF;
+}
+.step-tracker .step.active .step-num{ background: var(--violet); color: #fff; }
+.step-tracker .step.done{ border-color: var(--teal); color: var(--teal); }
+.step-tracker .step.done .step-num{ background: var(--teal); color: #fff; }
+
+.panel{
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 20px;
+  animation: popIn .4s ease;
+}
+.panel h2{
+  font-family: var(--font-display);
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+.hidden{ display: none !important; }
+
+.option-group{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.option-label{ font-weight: 700; color: var(--ink-soft); min-width: 50px; }
+
+.pill-group{ display: flex; gap: 8px; flex-wrap: wrap; }
+.pill-btn{
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--line);
+  background: #fff;
+  font-weight: 700;
+  color: var(--ink-soft);
+  transition: all .15s ease;
+}
+.pill-btn.active{
+  background: var(--grad-hero);
+  border-color: transparent;
+  color: #fff;
+}
+
+.hint{ color: var(--ink-soft); font-size: 0.9rem; margin-top: -8px; }
+
+.guess-input-row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0;
+}
+.guess-input-row input{
+  flex: 1;
+  max-width: 200px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--line);
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: center;
+  font-family: inherit;
+}
+.guess-input-row input:focus{ border-color: var(--violet); outline: none; }
+.guess-input-row .unit{ font-weight: 800; font-size: 1.2rem; color: var(--violet); }
+
+.tool-stage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  font-size: 5rem;
+  margin-bottom: 20px;
+}
+
+.trial-buttons{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.results-box{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.result-stat{
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  padding: 16px 10px;
+  text-align: center;
+}
+.result-label{ display: block; font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 6px; }
+.result-value{ display: block; font-size: 1.4rem; font-weight: 900; color: var(--violet-dark); font-family: var(--font-display); }
+
+.compare-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.compare-card{
+  text-align: center;
+  padding: 20px 10px;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+}
+.compare-label{ display: block; font-size: 0.82rem; color: var(--ink-soft); margin-bottom: 8px; }
+.compare-value{ display: block; font-size: 1.5rem; font-weight: 900; font-family: var(--font-display); color: var(--ink); }
+
+.feedback-msg{
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: #F3EEFF;
+  color: var(--violet-dark);
+}
+
+.stars-row{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 2rem;
+  margin: 16px 0;
+}
+.stars-row .star{ opacity: 0.25; transition: opacity .2s ease, transform .2s ease; }
+.stars-row .star.filled{ opacity: 1; animation: bounceIn .4s ease; }
+
+.compare-actions{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+@media (max-width: 560px){
+  .results-box, .compare-grid{ grid-template-columns: 1fr; }
+  .game-header-inner{ padding: 12px 16px; }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قهرمان معادله | MathPlay</title>
+<meta name="description" content="بازی آموزشی حل معادله یک مجهولی با سطوح آسان، متوسط و سخت.">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/animation.css">
+<link rel="stylesheet" href="../../css/responsive.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="game-body">
+
+<header class="game-header">
+  <div class="container game-header-inner">
+    <a href="../../index.html" class="back-link">→ بازگشت به MathPlay</a>
+    <h1 class="game-title">⚔️ قهرمان معادله</h1>
+    <div class="score-pill">امتیاز: <span id="scoreVal">0</span></div>
+  </div>
+</header>
+
+<main class="container game-main">
+
+  <!-- صفحه انتخاب سطح -->
+  <section class="panel setup-panel" id="setupPanel">
+    <h2>سطح بازی را انتخاب کن</h2>
+    <p class="hint">در هر سطح باید ۵ معادله را به‌درستی حل کنی تا قهرمان شوی.</p>
+    <div class="level-cards" id="levelCards">
+      <button class="level-card" data-level="easy">
+        <span class="level-icon">🟢</span>
+        <span class="level-name">آسان</span>
+        <span class="level-form">x + a = b</span>
+      </button>
+      <button class="level-card" data-level="medium">
+        <span class="level-icon">🟡</span>
+        <span class="level-name">متوسط</span>
+        <span class="level-form">ax + b = c</span>
+      </button>
+      <button class="level-card" data-level="hard">
+        <span class="level-icon">🔴</span>
+        <span class="level-name">سخت</span>
+        <span class="level-form">ax + b = cx + d</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- صفحه بازی -->
+  <section class="panel play-panel hidden" id="playPanel">
+    <div class="play-hud">
+      <div class="hud-item">⏱ زمان: <span id="timerVal">۰۰:۰۰</span></div>
+      <div class="hud-item">✅ صحیح: <span id="correctCount">۰</span> / ۵</div>
+      <div class="hud-item">❌ اشتباه: <span id="wrongCount">۰</span></div>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="equation-stage">
+      <p class="equation-label">معادله را حل کن:</p>
+      <div class="equation-display" id="equationDisplay">x + 5 = 12</div>
+
+      <div class="answer-row">
+        <label for="answerInput">x = </label>
+        <input type="number" id="answerInput" placeholder="جواب" autocomplete="off">
+        <button class="btn btn-primary" id="submitAnswerBtn">بررسی جواب</button>
+      </div>
+
+      <button class="hint-btn" id="hintBtn">💡 راهنمای مرحله‌ای</button>
+      <p class="hint-text hidden" id="hintText"></p>
+      <p class="feedback-inline" id="feedbackInline"></p>
+    </div>
+  </section>
+
+  <!-- صفحه نتیجه پایان سطح -->
+  <section class="panel result-panel hidden" id="resultPanel">
+    <div class="result-emoji" id="resultEmoji">🏆</div>
+    <h2 id="resultTitle">تبریک، قهرمان شدی!</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <span class="compare-label">پاسخ صحیح</span>
+        <span class="compare-value" id="finalCorrect">۰</span>
+      </div>
+      <div class="compare-card">
+        <span class="compare-label">زمان سپری‌شده</span>
+        <span class="compare-value" id="finalTime">۰۰:۰۰</span>
+      </div>
+      <div class="compare-card">
+        <span class="compare-label">امتیاز این دور</span>
+        <span class="compare-value" id="finalRoundScore">۰</span>
+      </div>
+    </div>
+    <div class="compare-actions">
+      <button class="btn btn-primary" id="nextLevelBtn">مرحله بعد ➜</button>
+      <button class="btn btn-secondary" id="retryLevelBtn">تلاش دوباره 🔁</button>
+      <a class="btn btn-secondary" href="../../index.html">بازگشت به خانه</a>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../js/score.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

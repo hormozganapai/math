@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دنیای احتمال | MathPlay</title>
+<meta name="description" content="بازی آموزشی احتمال — پرتاب سکه و تاس و مقایسه احتمال نظری با تجربی.">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/animation.css">
+<link rel="stylesheet" href="../../css/responsive.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="game-body">
+
+<header class="game-header">
+  <div class="container game-header-inner">
+    <a href="../../index.html" class="back-link">→ بازگشت به MathPlay</a>
+    <h1 class="game-title">🎲 دنیای احتمال</h1>
+    <div class="score-pill">امتیاز: <span id="scoreVal">0</span></div>
+  </div>
+</header>
+
+<main class="container game-main">
+
+  <!-- نوار مراحل -->
+  <ol class="step-tracker" id="stepTracker">
+    <li class="step active" data-step="1"><span class="step-num">۱</span> حدس بزن</li>
+    <li class="step" data-step="2"><span class="step-num">۲</span> آزمایش کن</li>
+    <li class="step" data-step="3"><span class="step-num">۳</span> مقایسه کن</li>
+  </ol>
+
+  <!-- انتخاب سطح و ابزار -->
+  <section class="panel setup-panel" id="setupPanel">
+    <h2>ابزار و سطح بازی را انتخاب کن</h2>
+    <div class="option-group">
+      <span class="option-label">ابزار:</span>
+      <div class="pill-group" id="toolGroup">
+        <button class="pill-btn active" data-tool="coin">🪙 سکه</button>
+        <button class="pill-btn" data-tool="die">🎲 تاس</button>
+      </div>
+    </div>
+    <div class="option-group">
+      <span class="option-label">سطح:</span>
+      <div class="pill-group" id="levelGroup">
+        <button class="pill-btn active" data-level="easy">آسان</button>
+        <button class="pill-btn" data-level="medium">متوسط</button>
+        <button class="pill-btn" data-level="hard">سخت</button>
+      </div>
+    </div>
+    <button class="btn btn-primary" id="startRoundBtn">شروع مرحله ۱: حدس بزن</button>
+  </section>
+
+  <!-- مرحله ۱: حدس -->
+  <section class="panel guess-panel hidden" id="guessPanel">
+    <h2 id="guessQuestion">احتمال آمدن «شیر» در پرتاب سکه چند درصد است؟</h2>
+    <p class="hint" id="guessHint"></p>
+    <div class="guess-input-row">
+      <input type="number" id="guessInput" min="0" max="100" placeholder="عدد بین ۰ تا ۱۰۰">
+      <span class="unit">%</span>
+    </div>
+    <button class="btn btn-primary" id="confirmGuessBtn">ثبت حدس و رفتن به آزمایش</button>
+  </section>
+
+  <!-- مرحله ۲: آزمایش -->
+  <section class="panel experiment-panel hidden" id="experimentPanel">
+    <h2>آزمایش را انجام بده</h2>
+    <div class="tool-stage" id="toolStage">
+      <div class="coin" id="coinVisual">🪙</div>
+      <div class="die-visual hidden" id="dieVisual">🎲</div>
+    </div>
+
+    <div class="trial-buttons">
+      <button class="btn btn-secondary trial-btn" data-count="1">۱ بار</button>
+      <button class="btn btn-secondary trial-btn" data-count="10">۱۰ بار</button>
+      <button class="btn btn-secondary trial-btn" data-count="50">۵۰ بار</button>
+      <button class="btn btn-secondary trial-btn" data-count="100">۱۰۰ بار</button>
+    </div>
+
+    <div class="results-box" id="resultsBox">
+      <div class="result-stat">
+        <span class="result-label">تعداد کل آزمایش‌ها</span>
+        <span class="result-value" id="totalTrials">۰</span>
+      </div>
+      <div class="result-stat">
+        <span class="result-label">تعداد نتیجه هدف</span>
+        <span class="result-value" id="targetHits">۰</span>
+      </div>
+      <div class="result-stat">
+        <span class="result-label">احتمال تجربی</span>
+        <span class="result-value" id="experimentalProb">۰٪</span>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="goToCompareBtn" disabled>رفتن به مقایسه نتایج</button>
+  </section>
+
+  <!-- مرحله ۳: مقایسه -->
+  <section class="panel compare-panel hidden" id="comparePanel">
+    <h2>مقایسه نتیجه</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <span class="compare-label">حدس تو</span>
+        <span class="compare-value" id="compareGuess">۰٪</span>
+      </div>
+      <div class="compare-card">
+        <span class="compare-label">احتمال نظری</span>
+        <span class="compare-value" id="compareTheoretical">۰٪</span>
+      </div>
+      <div class="compare-card">
+        <span class="compare-label">احتمال تجربی</span>
+        <span class="compare-value" id="compareExperimental">۰٪</span>
+      </div>
+    </div>
+    <p class="feedback-msg" id="feedbackMsg"></p>
+    <div class="stars-row" id="starsRow"></div>
+    <div class="compare-actions">
+      <button class="btn btn-primary" id="playAgainBtn">دور بعدی 🔁</button>
+      <a class="btn btn-secondary" href="../../index.html">بازگشت به خانه</a>
+    </div>
+  </section>
+
+</main>
+
+<script src="../../js/score.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

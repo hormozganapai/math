@@ -1,0 +1,47 @@
+/* =========================================================
+   MathPlay — واکنش‌گرایی
+   ========================================================= */
+
+@media (max-width: 960px){
+  .hero-inner{
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-actions{ justify-content: center; }
+  .hero p.lead{ margin-inline: auto; }
+  .hero-visual{ order: -1; }
+  .hero-card{ max-width: 280px; }
+}
+
+@media (max-width: 720px){
+  .header-inner{ padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
+  .header-stats{ order: 3; width: 100%; justify-content: center; }
+  .hero{ padding: 40px 0 24px; }
+  .container{ padding: 0 16px; }
+  .search-box{ padding: 5px 6px 5px 16px; }
+  .search-box input{ font-size: 0.95rem; padding: 10px 0; }
+  .category-list{ gap: 8px; }
+  .category-chip{ padding: 8px 14px; font-size: 0.85rem; }
+  .games-grid{ grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .game-card{ padding: 18px 16px; }
+  .game-card .icon-badge{ width: 50px; height: 50px; font-size: 1.5rem; }
+  .game-card h3{ font-size: 1.05rem; }
+}
+
+@media (max-width: 480px){
+  .logo{ font-size: 1.2rem; }
+  .logo .logo-badge{ width: 36px; height: 36px; font-size: 1.1rem; }
+  .hero h1{ font-size: 1.7rem; }
+  .header-stat{ padding: 6px 10px; font-size: 0.78rem; }
+  .btn{ padding: 12px 20px; font-size: 0.92rem; }
+  .games-grid{ grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
