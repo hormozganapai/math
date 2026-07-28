@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شهر اعداد صحیح | Integer City</title>
+<meta name="description" content="بازی آموزشی اعداد صحیح — با آسانسور شهر، مثبت و منفی، مقایسه، جمع و تفریق را یاد بگیر.">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-field" id="bgField" aria-hidden="true"></div>
+
+<!-- ===================== صفحه شروع ===================== -->
+<section class="screen start-screen" id="startScreen">
+  <div class="start-card">
+    <div class="start-emoji">🏙️</div>
+    <h1>شهر اعداد صحیح</h1>
+    <p class="lead">با آسانسور شهر، راز اعداد مثبت و منفی را یاد بگیر: تشخیص عدد،
+      مقایسه طبقه‌ها، حرکت آسانسور، و جمع و تفریق اعداد صحیح.</p>
+
+    <div class="level-select">
+      <span class="level-select-label">سطح بازی را انتخاب کن:</span>
+      <div class="level-cards" id="levelCards">
+        <button class="level-card active" data-level="easy">
+          <span class="level-icon">🟢</span>
+          <span class="level-name">آسان</span>
+          <span class="level-desc">اعداد ۵- تا ۵+</span>
+        </button>
+        <button class="level-card" data-level="medium">
+          <span class="level-icon">🟡</span>
+          <span class="level-name">متوسط</span>
+          <span class="level-desc">اعداد ۱۰- تا ۱۰+</span>
+        </button>
+        <button class="level-card" data-level="hard">
+          <span class="level-icon">🔴</span>
+          <span class="level-name">سخت</span>
+          <span class="level-desc">اعداد ۵۰- تا ۵۰+</span>
+        </button>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg" id="startBtn">🚪 شروع بازی</button>
+
+    <div class="best-score-line" id="bestScoreLine">بهترین امتیاز تو: <span id="bestScoreVal">۰</span></div>
+  </div>
+</section>
+
+<!-- ===================== صفحه بازی ===================== -->
+<section class="screen play-screen hidden" id="playScreen">
+
+  <header class="hud">
+    <div class="hud-item">⏱ <span id="timerVal">۰۰:۰۰</span></div>
+    <div class="hud-item">✅ <span id="correctVal">۰</span></div>
+    <div class="hud-item">❌ <span id="wrongVal">۰</span></div>
+    <div class="hud-item score-item">🏆 <span id="scoreVal">۰</span></div>
+  </header>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <p class="stage-badge" id="stageBadge">مرحله ۱ — شناخت اعداد صحیح</p>
+
+  <div class="game-stage">
+
+    <div class="building-wrap">
+      <div class="building" id="building">
+        <div class="roof">🏢</div>
+        <div class="shaft" id="shaft">
+          <!-- floor marks + elevator car با جاوااسکریپت ساخته می‌شوند -->
+        </div>
+      </div>
+    </div>
+
+    <div class="question-panel">
+      <p class="question-prompt" id="questionPrompt">این عدد چیست؟</p>
+      <p class="question-sub" id="questionSub"></p>
+
+      <div class="options-row" id="optionsRow"></div>
+
+      <p class="feedback-msg" id="feedbackMsg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== صفحه نتیجه ===================== -->
+<section class="screen result-screen hidden" id="resultScreen">
+  <div class="result-card">
+    <div class="stars-row" id="starsRow">
+      <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+    </div>
+    <h2 id="resultTitle">آفرین! آسانسور درست حرکت کرد 🎉</h2>
+    <p class="result-sub" id="resultSub">یک مرحله دیگر باز شد ⭐</p>
+
+    <div class="result-stats">
+      <div class="stat-box">
+        <span class="stat-label">پاسخ صحیح</span>
+        <span class="stat-value" id="finalCorrect">۰</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">پاسخ غلط</span>
+        <span class="stat-value" id="finalWrong">۰</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">درصد موفقیت</span>
+        <span class="stat-value" id="finalPercent">۰٪</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">زمان</span>
+        <span class="stat-value" id="finalTime">۰۰:۰۰</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">امتیاز این دور</span>
+        <span class="stat-value" id="finalScore">۰</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">بهترین امتیاز</span>
+        <span class="stat-value" id="finalBest">۰</span>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn btn-primary" id="playAgainBtn">🔁 بازی دوباره</button>
+      <button class="btn btn-secondary" id="changeLevelBtn">🎚️ تغییر سطح</button>
+      <a class="btn btn-secondary" href="../../index.html">🏠 بازگشت به MathPlay</a>
+    </div>
+  </div>
+</section>
+
+<script src="game.js"></script>
+</body>
+</html>

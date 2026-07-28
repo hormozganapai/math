@@ -17,6 +17,7 @@
     { id: 'ریاضی هشتم', label: 'ریاضی هشتم' },
     { id: 'ریاضی نهم', label: 'ریاضی نهم' },
     { id: 'احتمال', label: 'احتمال' },
+    { id: 'اعداد صحیح', label: 'اعداد صحیح' },
     { id: 'جبر', label: 'جبر' },
     { id: 'هندسه', label: 'هندسه' },
     { id: 'آمار', label: 'آمار' }
@@ -98,7 +99,8 @@
     'احتمال': { grad: 'linear-gradient(135deg,#7C4DFF,#2E9BFF)', soft: '#EFEAFF' },
     'جبر': { grad: 'linear-gradient(135deg,#FF6B35,#FFC845)', soft: '#FFF1E5' },
     'هندسه': { grad: 'linear-gradient(135deg,#00BFA6,#2E9BFF)', soft: '#E3FBF6' },
-    'آمار': { grad: 'linear-gradient(135deg,#FF4785,#7C4DFF)', soft: '#FFE7F1' }
+    'آمار': { grad: 'linear-gradient(135deg,#FF4785,#7C4DFF)', soft: '#FFE7F1' },
+    'اعداد صحیح': { grad: 'linear-gradient(135deg,#2E9BFF,#00BFA6)', soft: '#E3F3FF' }
   };
 
   function buildCard(game) {

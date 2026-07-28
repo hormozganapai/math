@@ -1,6 +1,7 @@
 {
   "games": [
     "probability",
-    "equation"
+    "equation",
+    "integer_city"
   ]
 }
