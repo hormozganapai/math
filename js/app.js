@@ -20,7 +20,8 @@
     { id: 'اعداد صحیح', label: 'اعداد صحیح' },
     { id: 'جبر', label: 'جبر' },
     { id: 'هندسه', label: 'هندسه' },
-    { id: 'آمار', label: 'آمار' }
+    { id: 'آمار', label: 'آمار' },
+    { id: 'پازل ریاضی', label: 'پازل ریاضی' }
   ];
 
   const state = {
@@ -100,7 +101,8 @@
     'جبر': { grad: 'linear-gradient(135deg,#FF6B35,#FFC845)', soft: '#FFF1E5' },
     'هندسه': { grad: 'linear-gradient(135deg,#00BFA6,#2E9BFF)', soft: '#E3FBF6' },
     'آمار': { grad: 'linear-gradient(135deg,#FF4785,#7C4DFF)', soft: '#FFE7F1' },
-    'اعداد صحیح': { grad: 'linear-gradient(135deg,#2E9BFF,#00BFA6)', soft: '#E3F3FF' }
+    'اعداد صحیح': { grad: 'linear-gradient(135deg,#2E9BFF,#00BFA6)', soft: '#E3F3FF' },
+    'پازل ریاضی': { grad: 'linear-gradient(135deg,#7C4DFF,#FF4785)', soft: '#F3EEFF' }
   };
 
   function buildCard(game) {

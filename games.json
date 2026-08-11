@@ -2,6 +2,8 @@
   "games": [
     "probability",
     "equation",
-    "integer_city"
+    "integer_city",
+    "algebra_land",
+    "magic_square"
   ]
 }

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سرزمین جبر | Algebra Land</title>
+<meta name="description" content="بازی آموزشی جبر — قهرمان سرزمین جبر شو، ترازو را متعادل کن، کارخانه و قطار و جزیره را عبور کن و جادوگر جبر را شکست بده.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="clouds-layer" id="cloudsLayer" aria-hidden="true"></div>
+
+<div class="top-controls">
+  <button class="icon-toggle" id="themeToggle" title="تغییر تم" type="button">🌙</button>
+  <button class="icon-toggle" id="soundToggle" title="قطع/وصل صدا" type="button">🔊</button>
+</div>
+
+<!-- ===================== صفحه شروع ===================== -->
+<section class="screen start-screen" id="startScreen">
+  <div class="start-card">
+    <div class="start-emoji">🏰</div>
+    <h1>سرزمین جبر</h1>
+    <p class="lead">
+      جادوگر مجهول نمادهای ریاضی سرزمین جبر را به هم ریخته. تو قهرمانی هستی که
+      باید با عبور از دهکده متغیرها، شهر ترازو، کارخانه، ایستگاه معادله و
+      جزیره مجهول، به قلعه برسی و جادوگر جبر را شکست بدهی.
+    </p>
+
+    <div class="level-select">
+      <span class="level-select-label">سطح سفر را انتخاب کن:</span>
+      <div class="level-cards" id="levelCards">
+        <button class="level-card active" data-level="easy">
+          <span class="level-icon">🟢</span><span class="level-name">آسان</span>
+        </button>
+        <button class="level-card" data-level="medium">
+          <span class="level-icon">🟡</span><span class="level-name">متوسط</span>
+        </button>
+        <button class="level-card" data-level="hard">
+          <span class="level-icon">🔴</span><span class="level-name">سخت</span>
+        </button>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg" id="startAdventureBtn">🚀 شروع ماجراجویی</button>
+
+    <div class="collection-line">
+      <span>بهترین امتیاز: <strong id="bestScoreVal">۰</strong></span>
+      <div class="medals-row" id="medalsRow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== نقشه سرزمین ===================== -->
+<section class="screen map-screen hidden" id="mapScreen">
+  <header class="map-header">
+    <button class="btn btn-secondary" id="mapBackBtn">→ بازگشت</button>
+    <h2>🗺️ نقشه سرزمین جبر</h2>
+    <a class="btn btn-secondary" href="../../index.html">🏠 MathPlay</a>
+  </header>
+  <div class="map-nodes" id="mapNodes"></div>
+</section>
+
+<!-- ===================== آموزش کوتاه قبل از منطقه ===================== -->
+<section class="screen intro-screen hidden" id="introScreen">
+  <div class="intro-card">
+    <div class="intro-icon" id="introIcon">🌳</div>
+    <h2 id="introTitle">دهکده متغیرها</h2>
+    <p class="intro-lesson" id="introLesson"></p>
+    <div class="intro-actions">
+      <button class="btn btn-primary btn-lg" id="introStartBtn">شروع بازی این منطقه</button>
+      <button class="btn btn-secondary" id="introBackBtn">بازگشت به نقشه</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== صفحه بازی منطقه ===================== -->
+<section class="screen play-screen hidden" id="playScreen">
+  <div class="hud">
+    <p class="stage-badge" id="stageBadge">مرحله</p>
+    <div class="hud-stats">
+      <span>✅ <span id="hudCorrect">۰</span></span>
+      <span>❌ <span id="hudWrong">۰</span></span>
+      <span class="score-item">🏆 <span id="hudScore">۰</span></span>
+    </div>
+  </div>
+
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="health-bar-wrap hidden" id="healthBarWrap">
+    <span class="health-label">🧙‍♂️ سلامتی جادوگر</span>
+    <div class="health-track"><div class="health-fill" id="healthFill"></div></div>
+  </div>
+
+  <div class="question-panel" id="questionArea"></div>
+</section>
+
+<!-- ===================== نتیجه منطقه ===================== -->
+<section class="screen result-screen hidden" id="resultScreen">
+  <div class="result-card">
+    <div class="stars-row" id="resultStars"></div>
+    <h2 id="resultTitle">منطقه تمام شد!</h2>
+    <div class="result-stats" id="resultStats"></div>
+    <div class="result-actions">
+      <button class="btn btn-primary" id="resultContinueBtn">🗺️ بازگشت به نقشه</button>
+      <button class="btn btn-secondary" id="resultMapBtn">نقشه سرزمین</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== پیروزی نهایی ===================== -->
+<section class="screen victory-screen hidden" id="victoryScreen">
+  <div class="victory-card">
+    <div class="victory-emoji">👑</div>
+    <h2>تبریک! جادوگر جبر شکست خورد و سرزمین جبر آزاد شد!</h2>
+    <p class="victory-sub">تو حالا یک قهرمان واقعی جبر هستی.</p>
+    <div class="result-stats" id="victoryStats"></div>
+    <div class="result-actions">
+      <button class="btn btn-primary" id="victoryMapBtn">🗺️ بازگشت به نقشه</button>
+      <a class="btn btn-secondary" href="../../index.html">🏠 بازگشت به MathPlay</a>
+    </div>
+  </div>
+</section>
+
+<script src="Storage.js"></script>
+<script src="ScoreManager.js"></script>
+<script src="SoundManager.js"></script>
+<script src="Animation.js"></script>
+<script src="QuestionGenerator.js"></script>
+<script src="UI.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مربع جادویی | MathPlay</title>
+<meta name="description" content="بازی پازل مربع جادویی — اعداد را طوری بچین که مجموع سطرها، ستون‌ها و قطرها برابر شود.">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-field" id="bgField" aria-hidden="true"></div>
+
+<!-- ===================== صفحه شروع ===================== -->
+<section class="screen start-screen" id="startScreen">
+  <div class="start-card">
+    <div class="start-emoji">🔮</div>
+    <h1>مربع جادویی</h1>
+    <p class="lead">
+      اعداد ۱ تا n² از قبل داخل مربع چیده شده‌اند اما جای‌شان اشتباه است!
+      با کشیدن یا لمسِ دو خانه، جای اعدادشان را عوض کن تا مجموع هر سطر، هر
+      ستون و هر دو قطر اصلی با هم برابر شوند.
+    </p>
+
+    <div class="level-select">
+      <span class="level-select-label">اندازه مربع را انتخاب کن:</span>
+      <div class="level-cards" id="levelCards">
+        <button class="level-card active" data-size="3">
+          <span class="level-icon">3×3</span>
+          <span class="level-desc">آسان</span>
+        </button>
+        <button class="level-card" data-size="4">
+          <span class="level-icon">4×4</span>
+          <span class="level-desc">متوسط</span>
+        </button>
+        <button class="level-card" data-size="5">
+          <span class="level-icon">5×5</span>
+          <span class="level-desc">سخت</span>
+        </button>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg" id="startBtn">🚀 شروع پازل</button>
+
+    <div class="best-score-line" id="bestScoreLine"></div>
+  </div>
+</section>
+
+<!-- ===================== صفحه بازی ===================== -->
+<section class="screen play-screen hidden" id="playScreen">
+
+  <header class="hud">
+    <button class="btn btn-secondary" id="backBtn">→ بازگشت</button>
+    <div class="hud-item">⏱ <span id="timerVal">۰۰:۰۰</span></div>
+    <div class="hud-item">🔁 حرکت: <span id="movesVal">۰</span></div>
+    <div class="hud-item score-item">✨ عدد جادویی: <span id="magicConstVal">۰</span></div>
+  </header>
+
+  <div class="hint-box" id="hintBox"></div>
+
+  <div class="board-wrap">
+    <div class="square-grid" id="squareGrid"></div>
+  </div>
+
+  <div class="diagonal-info" id="diagonalInfo"></div>
+
+  <p class="swap-hint">💡 روی یک خانه بزن تا انتخاب شود، سپس روی خانه دیگر بزن تا جایشان عوض شود — یا با درگ مستقیم جابه‌جا کن.</p>
+
+  <div class="play-actions">
+    <button class="btn btn-secondary" id="hintBtn">💡 راهنمایی</button>
+    <button class="btn btn-secondary" id="resetBtn">🔄 شروع دوباره این مربع</button>
+  </div>
+</section>
+
+<!-- ===================== صفحه نتیجه ===================== -->
+<section class="screen result-screen hidden" id="resultScreen">
+  <div class="result-card">
+    <div class="stars-row" id="starsRow">
+      <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+    </div>
+    <h2 id="resultTitle">مربع جادویی حل شد! 🎉</h2>
+    <p class="result-sub" id="resultSub"></p>
+
+    <div class="result-stats">
+      <div class="stat-box"><span class="stat-label">تعداد حرکت</span><span class="stat-value" id="finalMoves">۰</span></div>
+      <div class="stat-box"><span class="stat-label">زمان</span><span class="stat-value" id="finalTime">۰۰:۰۰</span></div>
+      <div class="stat-box"><span class="stat-label">بهترین حرکت</span><span class="stat-value" id="finalBestMoves">۰</span></div>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn btn-primary" id="nextSizeBtn">اندازه بعدی ➜</button>
+      <button class="btn btn-secondary" id="retryBtn">🔁 همین اندازه دوباره</button>
+      <a class="btn btn-secondary" href="../../index.html">🏠 بازگشت به MathPlay</a>
+    </div>
+  </div>
+</section>
+
+<script src="game.js"></script>
+</body>
+</html>
