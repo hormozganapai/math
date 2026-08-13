@@ -194,7 +194,7 @@ input{ font-family: inherit; }
 /* ترازو (Drag & Drop) */
 .scale-widget{ display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .scale-beam{ font-size: 2.4rem; }
-.scale-pans{ display: flex; gap: 20px; width: 100%; justify-content: center; flex-wrap: wrap; }
+.scale-pans{ display: flex; gap: 20px; width: 100%; justify-content: center; flex-wrap: wrap; direction: ltr; }
 .pan{ flex: 1; min-width: 150px; max-width: 220px; background: var(--bg); border: 2px dashed var(--line); border-radius: var(--radius-md); padding: 14px; text-align: center; }
 .pan-label{ display: block; font-weight: 800; margin-bottom: 10px; direction: ltr; }
 .pan-blocks{ display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; min-height: 40px; }
@@ -224,7 +224,7 @@ input{ font-family: inherit; }
 .equation-display.island-theme{ border: 2px solid var(--teal); }
 .equation-display.castle-theme{ border: 2px solid var(--pink); }
 
-.answer-row{ display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.answer-row{ display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; direction: ltr; }
 .answer-row label{ font-weight: 800; direction: ltr; }
 .answer-input{
   width: 120px; padding: 12px 14px; border-radius: var(--radius-md); border: 2px solid var(--line);

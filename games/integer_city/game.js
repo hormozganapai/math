@@ -273,9 +273,14 @@
       distractors.delete(result);
       const optionValues = shuffle([result, ...[...distractors].slice(0, 2)]);
 
+      // عملوند دوم را همیشه با علامت واقعی‌اش داخل پرانتز نشان می‌دهیم تا
+      // عبارت نمایشی دقیقاً با همان محاسبه‌ای که پاسخ درست از آن به دست
+      // می‌آید یکی باشد (مثلاً اگر واقعاً «۱ طبقه پایین» یعنی جمع با ۱−،
+      // عبارت باید «... + (۱−)» نشان داده شود، نه «... + ۱»).
       return {
         stageType,
-        prompt: `${fmtSigned(a)} ${opSymbol} ${toFa(Math.abs(bSigned))} = ؟`,
+        prompt: `${fmtSigned(a)} ${opSymbol} (${fmtSigned(bSigned)}) = ?`,
+        promptIsEquation: true,
         sub: `آسانسور از طبقه ${fmtSigned(a)} به‌اندازه ${moveText} حرکت می‌کند.`,
         options: shuffle(optionValues.map(fmtSigned)),
         correctOption: fmtSigned(result),
@@ -363,6 +368,7 @@
     const meta = STAGE_META[q.stageType];
     els.stageBadge.textContent = `مرحله ${toFa(meta.index)} — ${meta.title}`;
     els.questionPrompt.textContent = q.prompt;
+    els.questionPrompt.classList.toggle('is-equation', !!q.promptIsEquation);
     els.questionSub.textContent = q.sub;
     els.feedbackMsg.textContent = '';
     els.feedbackMsg.className = 'feedback-msg';

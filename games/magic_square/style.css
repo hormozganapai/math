@@ -105,7 +105,7 @@ button{ font-family: inherit; cursor: pointer; border: none; background: none; }
 .hint-box:empty{ display: none; }
 
 .board-wrap{ display: flex; justify-content: center; margin-bottom: 6px; }
-.square-grid{ display: grid; gap: 6px; }
+.square-grid{ display: grid; gap: 6px; direction: ltr; }
 
 .cell{
   display: flex; align-items: center; justify-content: center;

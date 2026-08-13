@@ -152,11 +152,11 @@ class UIManager {
     container.innerHTML = `
       <p class="q-prompt">${isForward ? 'خروجی این ماشین چیست؟' : 'ورودی این ماشین چه عددی بوده؟'}</p>
       <div class="factory-pipeline">
-        <div class="factory-box factory-io">${isForward ? QuestionGenerator.toFa(q.input) : '؟'}</div>
+        <div class="factory-box factory-io">${isForward ? QuestionGenerator.toFa(q.input) : '?'}</div>
         <div class="factory-arrow">↓</div>
         ${stepsHtml}
         <div class="factory-arrow">↓</div>
-        <div class="factory-box factory-io">${isForward ? '؟' : QuestionGenerator.toFa(q.output)}</div>
+        <div class="factory-box factory-io">${isForward ? '?' : QuestionGenerator.toFa(q.output)}</div>
       </div>
       <div class="answer-row">
         <input type="number" class="answer-input" id="factoryAnswer" placeholder="پاسخ">

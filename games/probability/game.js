@@ -13,9 +13,9 @@
   /* تعریف رویدادهای هدف بر اساس ابزار و سطح انتخابی */
   const EVENTS = {
     coin: {
-      easy:   { label: 'آمدن «شیر»',            theoretical: 0.5,  check: (r) => r === 'شیر' },
-      medium: { label: 'آمدن «خط»',              theoretical: 0.5,  check: (r) => r === 'خط' },
-      hard:   { label: 'آمدن «شیر» سه بار پشت‌هم به‌صورت میانگین هر بلوک', theoretical: 0.5, check: (r) => r === 'شیر' }
+      easy:   { label: 'آمدن «رو»',            theoretical: 0.5,  check: (r) => r === 'رو' },
+      medium: { label: 'آمدن «پشت»',              theoretical: 0.5,  check: (r) => r === 'پشت' },
+      hard:   { label: 'آمدن «رو» سه بار پشت‌هم به‌صورت میانگین هر بلوک', theoretical: 0.5, check: (r) => r === 'رو' }
     },
     die: {
       easy:   { label: 'آمدن عدد «۶»',           theoretical: 1 / 6, check: (r) => r === 6 },
@@ -161,7 +161,7 @@
     const ev = currentEvent();
     for (let i = 0; i < count; i++) {
       const result = state.tool === 'coin'
-        ? (Math.random() < 0.5 ? 'شیر' : 'خط')
+        ? (Math.random() < 0.5 ? 'رو' : 'پشت')
         : (1 + Math.floor(Math.random() * 6));
       if (ev.check(result)) state.targetHits++;
       state.totalTrials++;
