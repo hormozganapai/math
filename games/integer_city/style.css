@@ -33,6 +33,28 @@
   --radius-pill: 999px;
 }
 
+[data-theme="dark"]{
+  --bg: #12142B;
+  --bg-alt: #1B1E3D;
+  --ink: #EDEFFC;
+  --ink-soft: #B7BCE3;
+  --line: #2E3260;
+  --violet-dark: #C7B8FF;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.3);
+  --shadow-md: 0 10px 24px rgba(0,0,0,.35);
+  --shadow-lg: 0 22px 48px rgba(0,0,0,.45);
+}
+
+body{ transition: background .3s ease, color .3s ease; }
+
+.top-controls{ position: fixed; top: 14px; left: 14px; z-index: 60; display: flex; gap: 8px; }
+.icon-toggle{
+  width: 42px; height: 42px; border-radius: 50%; background: var(--bg-alt);
+  border: 1px solid var(--line); font-size: 1.1rem; box-shadow: var(--shadow-sm);
+  transition: transform .15s ease;
+}
+.icon-toggle:hover{ transform: scale(1.08); }
+
 *, *::before, *::after{ box-sizing: border-box; }
 
 html, body{ height: 100%; }
@@ -102,7 +124,7 @@ input{ font-family: inherit; }
 }
 .btn-primary:hover{ transform: translateY(-3px); box-shadow: 0 16px 28px rgba(124,77,255,.4); }
 .btn-secondary{
-  background: #fff;
+  background: var(--bg-alt);
   color: var(--ink);
   border: 2px solid var(--line);
 }
@@ -126,7 +148,7 @@ input{ font-family: inherit; }
    صفحه شروع
 --------------------------------------------------------- */
 .start-card{
-  background: #fff;
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
@@ -195,7 +217,7 @@ input{ font-family: inherit; }
   justify-content: space-between;
   gap: 8px;
   flex-wrap: wrap;
-  background: #fff;
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
   padding: 10px 20px;
@@ -210,7 +232,7 @@ input{ font-family: inherit; }
 .progress-track{
   height: 10px;
   border-radius: var(--radius-pill);
-  background: #fff;
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   overflow: hidden;
   margin-bottom: 14px;
@@ -248,7 +270,7 @@ input{ font-family: inherit; }
   justify-content: center;
 }
 .building{
-  background: #fff;
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -325,7 +347,7 @@ input{ font-family: inherit; }
 
 /* پنل سؤال */
 .question-panel{
-  background: #fff;
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -387,7 +409,7 @@ input{ font-family: inherit; }
    صفحه نتیجه
 --------------------------------------------------------- */
 .result-card{
-  background: #fff;
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
@@ -471,3 +493,12 @@ input{ font-family: inherit; }
     transition-duration: .001ms !important;
   }
 }
+
+/* ---------------------------------------------------------
+   بازنویسی رنگ‌های ثابت روشن برای تم تاریک
+--------------------------------------------------------- */
+[data-theme="dark"] .level-card.active{ background: rgba(124,77,255,.18); }
+[data-theme="dark"] .stage-badge{ background: rgba(124,77,255,.18); }
+[data-theme="dark"] .floor-mark span{ background: rgba(27,30,61,.85); }
+[data-theme="dark"] .option-btn.correct{ background: rgba(22,199,132,.18); }
+[data-theme="dark"] .option-btn.wrong{ background: rgba(255,77,79,.18); }

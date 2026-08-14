@@ -11,10 +11,6 @@
 
   const STAGES = [
     {
-      id: 'village', title: 'دهکده متغیرها', icon: '🌳', type: 'mcq', count: 4,
-      lesson: 'در جبر، حرف‌هایی مثل x نشان‌دهنده عددی هستند که هنوز نمی‌دانیم چیست. به آن «متغیر» می‌گویند.'
-    },
-    {
       id: 'scale', title: 'شهر ترازو', icon: '⚖️', type: 'scale', count: 3,
       lesson: 'یک معادله مثل یک ترازوی متعادل است. اگر از یک طرف چیزی کم کنیم، باید از طرف دیگر هم به همان اندازه کم کنیم تا تعادل حفظ شود.'
     },
@@ -44,7 +40,6 @@
       this.anim = new AnimationManager(document.body);
       this.ui = new UIManager(this.anim, this.sound);
 
-      this.level = 'easy';
       this.currentStage = null;
       this.questions = [];
       this.qIndex = 0;
@@ -71,7 +66,6 @@
           victory: document.getElementById('victoryScreen')
         },
         cloudsLayer: document.getElementById('cloudsLayer'),
-        levelCards: document.getElementById('levelCards'),
         startBtn: document.getElementById('startAdventureBtn'),
         bestScoreVal: document.getElementById('bestScoreVal'),
         medalsRow: document.getElementById('medalsRow'),
@@ -110,12 +104,22 @@
 
     _applySavedSettings() {
       const data = this.storage.load();
-      document.documentElement.setAttribute('data-theme', data.theme);
-      this.els.themeToggle.textContent = data.theme === 'dark' ? '☀️' : '🌙';
+      const sharedTheme = this._getSharedTheme();
+      document.documentElement.setAttribute('data-theme', sharedTheme);
+      this.els.themeToggle.textContent = sharedTheme === 'dark' ? '☀️' : '🌙';
       this.sound.setEnabled(data.soundOn);
       this.els.soundToggle.textContent = data.soundOn ? '🔊' : '🔇';
       this.els.bestScoreVal.textContent = QuestionGenerator.toFa(data.bestScore);
       this._renderMedalCollection(data.medals);
+    }
+
+    /** خواندن/نوشتن تم از کلید مشترک کل سایت MathPlay (mathplay_theme) */
+    _getSharedTheme() {
+      try { return localStorage.getItem('mathplay_theme') || 'light'; }
+      catch (e) { return 'light'; }
+    }
+    _setSharedTheme(theme) {
+      try { localStorage.setItem('mathplay_theme', theme); } catch (e) { /* ignore */ }
     }
 
     _renderMedalCollection(medalIds) {
@@ -131,7 +135,7 @@
         const next = isDark ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         this.els.themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
-        this.storage.setTheme(next);
+        this._setSharedTheme(next);
         this.sound.playClick();
       });
 
@@ -150,15 +154,6 @@
     }
 
     _bindStartScreen() {
-      this.els.levelCards.addEventListener('click', (e) => {
-        const card = e.target.closest('.level-card');
-        if (!card) return;
-        [...this.els.levelCards.children].forEach((c) => c.classList.remove('active'));
-        card.classList.add('active');
-        this.level = card.dataset.level;
-        this.sound.playClick();
-      });
-
       this.els.startBtn.addEventListener('click', () => {
         this.sound.startBackground();
         this._renderMap();
@@ -215,12 +210,11 @@
 
     _generateFor(stage) {
       switch (stage.type) {
-        case 'mcq': return QuestionGenerator.villageQuestion();
-        case 'scale': return QuestionGenerator.scaleQuestion(this.level);
-        case 'factory': return QuestionGenerator.factoryQuestion(this.level);
-        case 'train': return QuestionGenerator.trainQuestion(this.level);
-        case 'island': return QuestionGenerator.islandQuestion(this.level);
-        case 'wizard': return QuestionGenerator.wizardQuestion(this.level);
+        case 'scale': return QuestionGenerator.scaleQuestion();
+        case 'factory': return QuestionGenerator.factoryQuestion();
+        case 'train': return QuestionGenerator.trainQuestion();
+        case 'island': return QuestionGenerator.islandQuestion();
+        case 'wizard': return QuestionGenerator.wizardQuestion();
         default: throw new Error('نوع منطقه ناشناخته: ' + stage.type);
       }
     }
@@ -238,9 +232,7 @@
       this.qStartTime = Date.now();
       const stageType = this.currentStage.type;
 
-      if (stageType === 'mcq') {
-        this.ui.renderMCQ(this.els.questionArea, q, (isCorrect) => this._onAnswered(isCorrect));
-      } else if (stageType === 'scale') {
+      if (stageType === 'scale') {
         this.ui.renderScale(this.els.questionArea, q, () => this._onAnswered(true));
       } else if (stageType === 'factory') {
         this.ui.renderFactory(this.els.questionArea, q, (isCorrect) => this._onAnswered(isCorrect));

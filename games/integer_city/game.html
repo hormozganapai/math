@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>شهر اعداد صحیح | Integer City</title>
 <meta name="description" content="بازی آموزشی اعداد صحیح — با آسانسور شهر، مثبت و منفی، مقایسه، جمع و تفریق را یاد بگیر.">
+<script>try{document.documentElement.setAttribute('data-theme', localStorage.getItem('mathplay_theme') || 'light');}catch(e){}</script>
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
@@ -14,6 +15,10 @@
 <body>
 
 <div class="bg-field" id="bgField" aria-hidden="true"></div>
+
+<div class="top-controls">
+  <button class="icon-toggle" id="themeToggle" title="تغییر تم" type="button">🌙</button>
+</div>
 
 <!-- ===================== صفحه شروع ===================== -->
 <section class="screen start-screen" id="startScreen">

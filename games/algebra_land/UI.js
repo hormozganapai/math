@@ -36,46 +36,6 @@ class UIManager {
     });
   }
 
-  /* ============== سؤال چندگزینه‌ای عمومی (منطقه ۱) ============== */
-  renderMCQ(container, question, onAnswer) {
-    container.innerHTML = `
-      <p class="q-prompt">${question.prompt}</p>
-      <div class="options-grid"></div>
-      <p class="q-feedback"></p>
-    `;
-    const grid = container.querySelector('.options-grid');
-    const feedback = container.querySelector('.q-feedback');
-
-    question.options.forEach((opt) => {
-      const btn = document.createElement('button');
-      btn.className = 'option-btn';
-      btn.type = 'button';
-      btn.textContent = opt;
-      btn.addEventListener('click', () => {
-        const isCorrect = opt === question.correctOption;
-        this._lockOptions(grid);
-        this._markOption(btn, isCorrect);
-        if (!isCorrect) {
-          const correctBtn = [...grid.children].find((b) => b.textContent === question.correctOption);
-          if (correctBtn) this._markOption(correctBtn, true);
-        }
-        feedback.textContent = isCorrect ? 'درسته! آفرین 🎉' : 'اشکالی نداره، جواب درست رو دیدی 👀';
-        feedback.className = 'q-feedback ' + (isCorrect ? 'correct' : 'wrong');
-        onAnswer(isCorrect);
-      });
-      grid.appendChild(btn);
-    });
-  }
-
-  _lockOptions(grid) {
-    [...grid.children].forEach((b) => (b.disabled = true));
-  }
-  _markOption(btn, isCorrect) {
-    btn.classList.add(isCorrect ? 'correct' : 'wrong');
-    if (!isCorrect) this.anim.shake(btn);
-    else this.anim.pop(btn);
-  }
-
   /* ============== منطقه ۲: ترازوی Drag & Drop ============== */
   renderScale(container, q, onSolved) {
     const localState = { left: q.a, right: q.b };

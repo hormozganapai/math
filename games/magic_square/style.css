@@ -32,6 +32,28 @@
   --radius-pill: 999px;
 }
 
+[data-theme="dark"]{
+  --bg: #12142B;
+  --bg-alt: #1B1E3D;
+  --ink: #EDEFFC;
+  --ink-soft: #B7BCE3;
+  --line: #2E3260;
+  --violet-dark: #C7B8FF;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.3);
+  --shadow-md: 0 10px 24px rgba(0,0,0,.35);
+  --shadow-lg: 0 22px 48px rgba(0,0,0,.45);
+}
+
+body{ transition: background .3s ease, color .3s ease; }
+
+.top-controls{ position: fixed; top: 14px; left: 14px; z-index: 60; display: flex; gap: 8px; }
+.icon-toggle{
+  width: 42px; height: 42px; border-radius: 50%; background: var(--bg-alt);
+  border: 1px solid var(--line); font-size: 1.1rem; box-shadow: var(--shadow-sm);
+  transition: transform .15s ease;
+}
+.icon-toggle:hover{ transform: scale(1.08); }
+
 *, *::before, *::after{ box-sizing: border-box; }
 html, body{ height: 100%; }
 body{
@@ -55,7 +77,7 @@ button{ font-family: inherit; cursor: pointer; border: none; background: none; }
 }
 .btn-primary{ background: var(--grad-hero); color: #fff; box-shadow: 0 12px 22px rgba(124,77,255,.32); }
 .btn-primary:hover{ transform: translateY(-3px); box-shadow: 0 16px 28px rgba(124,77,255,.4); }
-.btn-secondary{ background: #fff; color: var(--ink); border: 2px solid var(--line); }
+.btn-secondary{ background: var(--bg-alt); color: var(--ink); border: 2px solid var(--line); }
 .btn-secondary:hover{ transform: translateY(-3px); border-color: var(--violet); }
 .btn-lg{ padding: 15px 32px; font-size: 1.05rem; }
 
@@ -63,7 +85,7 @@ button{ font-family: inherit; cursor: pointer; border: none; background: none; }
 
 /* صفحه شروع */
 .start-card{
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg); padding: 42px 34px; max-width: 520px; width: 100%;
   text-align: center; animation: popIn .5s ease;
 }
@@ -92,7 +114,7 @@ button{ font-family: inherit; cursor: pointer; border: none; background: none; }
 .play-screen{ flex-direction: column; align-items: stretch; max-width: 640px; margin: 0 auto; }
 .hud{
   display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-pill);
+  background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius-pill);
   padding: 10px 18px; box-shadow: var(--shadow-sm); margin-bottom: 12px; font-weight: 800; font-size: .85rem;
 }
 .hud-item span{ color: var(--violet-dark); }
@@ -110,7 +132,7 @@ button{ font-family: inherit; cursor: pointer; border: none; background: none; }
 .cell{
   display: flex; align-items: center; justify-content: center;
   border-radius: var(--radius-sm); font-weight: 900; font-size: 1.15rem;
-  background: #fff; border: 2px solid var(--line); transition: all .15s ease; direction: ltr;
+  background: var(--bg-alt); border: 2px solid var(--line); transition: all .15s ease; direction: ltr;
   aspect-ratio: 1 / 1;
 }
 .cell.filled{ background: var(--grad-hero); color: #fff; border-color: transparent; cursor: grab; }
@@ -143,7 +165,7 @@ button{ font-family: inherit; cursor: pointer; border: none; background: none; }
 
 /* صفحه نتیجه */
 .result-card{
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg); padding: 40px 32px; max-width: 520px; width: 100%; text-align: center; animation: popIn .5s ease;
 }
 .stars-row{ display: flex; justify-content: center; gap: 10px; font-size: 2.4rem; margin-bottom: 12px; }
@@ -175,3 +197,9 @@ button{ font-family: inherit; cursor: pointer; border: none; background: none; }
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 }
+
+/* بازنویسی رنگ‌های ثابت روشن برای تم تاریک */
+[data-theme="dark"] .level-card.active{ background: rgba(124,77,255,.18); }
+[data-theme="dark"] .hint-box{ background: rgba(124,77,255,.18); }
+[data-theme="dark"] .cell.empty:hover{ background: rgba(124,77,255,.18); }
+[data-theme="dark"] .cell.dragover{ background: rgba(255,107,53,.18); }

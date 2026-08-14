@@ -441,10 +441,34 @@
   }
 
   /* =========================================================
+     تم روشن/تاریک (کلید مشترک با کل سایت MathPlay)
+  ========================================================= */
+  function bindThemeToggle() {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    const THEME_KEY = 'mathplay_theme';
+
+    const refreshIcon = () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.textContent = isDark ? '☀️' : '🌙';
+    };
+    refreshIcon();
+
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* ignore */ }
+      refreshIcon();
+    });
+  }
+
+  /* =========================================================
      init
   ========================================================= */
   function init() {
     renderBgField();
+    bindThemeToggle();
     renderLevelCards();
     bindStartScreen();
     bindHint();

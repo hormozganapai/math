@@ -82,7 +82,7 @@ class ScoreManager {
 
     const newlyAwarded = [];
 
-    if (stageId === 'village' && this.storage.awardMedal(MEDALS.apprentice.id)) {
+    if (stageId === 'scale' && this.storage.awardMedal(MEDALS.apprentice.id)) {
       newlyAwarded.push(MEDALS.apprentice);
     }
     if (stageId === 'train' && this.storage.awardMedal(MEDALS.master.id)) {

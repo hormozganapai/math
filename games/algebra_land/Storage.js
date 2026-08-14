@@ -9,7 +9,7 @@
 class AlgebraStorage {
   constructor() {
     this.key = 'algebra_land_save';
-    this.stageOrder = ['village', 'scale', 'factory', 'train', 'island', 'castle'];
+    this.stageOrder = ['scale', 'factory', 'train', 'island', 'castle'];
   }
 
   /** مقدار پیش‌فرض ذخیره‌سازی وقتی چیزی قبلاً ذخیره نشده */
