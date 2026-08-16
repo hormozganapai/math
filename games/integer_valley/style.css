@@ -1,0 +1,651 @@
+/* =========================================
+   Base & Reset
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; /* Fallbacks for standard Persian fonts */
+}
+
+:root {
+    /* Light Theme (Cartoon Adventure) */
+    --bg-main: #e0f7fa; /* Sky blue */
+    --text-main: #2c3e50;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --primary-color: #4CAF50; /* Green mountains */
+    --primary-hover: #45a049;
+    --secondary-color: #2196F3;
+    --secondary-hover: #1976D2;
+    --danger-color: #f44336;
+    --danger-hover: #d32f2f;
+    --success-color: #8BC34A;
+    --warning-color: #FFC107;
+    --cave-color: #9C27B0;
+    --mountain-color: #4CAF50;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --line-color: #555;
+    --tick-color: #333;
+}
+
+body.theme-dark {
+    /* Dark Theme */
+    --bg-main: #121212; /* Dark night */
+    --text-main: #e0e0e0;
+    --card-bg: rgba(30, 30, 30, 0.9);
+    --primary-color: #388E3C;
+    --primary-hover: #2E7D32;
+    --secondary-color: #1976D2;
+    --secondary-hover: #1565C0;
+    --danger-color: #D32F2F;
+    --danger-hover: #B71C1C;
+    --success-color: #689F38;
+    --warning-color: #FFA000;
+    --cave-color: #7B1FA2;
+    --mountain-color: #388E3C;
+    --shadow-color: rgba(255, 255, 255, 0.05);
+    --line-color: #aaa;
+    --tick-color: #ddd;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   Typography & Utilities
+   ========================================= */
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Glassmorphism */
+.glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 var(--shadow-color);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* =========================================
+   Header
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* =========================================
+   Buttons
+   ========================================= */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: transform 0.1s, background-color 0.2s;
+    outline: none;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 0 var(--primary-hover);
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.secondary-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: 0 4px 0 var(--secondary-hover);
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-hover);
+}
+
+.icon-btn {
+    background: transparent;
+    font-size: 1.5rem;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.icon-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.theme-dark .icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   Screens Container
+   ========================================= */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+.screen {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   Start Screen
+   ========================================= */
+.title-container {
+    text-align: center;
+    margin-bottom: 30px;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border: 2px solid var(--primary-color);
+}
+
+.title-container h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.title-container p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.start-stats {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: var(--card-bg);
+    padding: 15px 30px;
+    border-radius: 15px;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+    font-size: 1.5rem;
+    padding: 15px 40px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 4px 0 var(--primary-hover), 0 0 0 0 rgba(76, 175, 80, 0.7); }
+    50% { transform: scale(1.05); box-shadow: 0 4px 0 var(--primary-hover), 0 0 0 15px rgba(76, 175, 80, 0); }
+    100% { transform: scale(1); box-shadow: 0 4px 0 var(--primary-hover), 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+/* =========================================
+   Map Screen
+   ========================================= */
+.map-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 600px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    margin: 0 auto;
+    overflow: hidden;
+    border: 3px solid var(--secondary-color);
+}
+
+.map-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.map-nodes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.map-node {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: var(--card-bg);
+    border: 3px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.map-node.locked {
+    background: #e0e0e0;
+    border-color: #9e9e9e;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+.map-node.unlocked {
+    border-color: var(--success-color);
+    background: white;
+}
+
+.map-node.current {
+    border-color: var(--warning-color);
+    background: #fff8e1;
+    animation: bounce 2s infinite;
+    box-shadow: 0 0 15px var(--warning-color);
+}
+
+body.theme-dark .map-node.locked {
+    background: #424242;
+    border-color: #616161;
+}
+
+body.theme-dark .map-node.unlocked {
+    background: #2e7d32;
+    color: white;
+}
+
+body.theme-dark .map-node.current {
+    background: #ffb300;
+    color: black;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translate(-50%, -50%); }
+    40% { transform: translate(-50%, -65%); }
+    60% { transform: translate(-50%, -57%); }
+}
+
+.node-label {
+    position: absolute;
+    bottom: -25px;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background: var(--card-bg);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* =========================================
+   Level Gameplay
+   ========================================= */
+.level-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-area {
+    width: 100%;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.question-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.question-extra {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+/* =========================================
+   Interactive Number Line
+   ========================================= */
+.number-line-container {
+    width: 100%;
+    margin: 30px 0;
+    position: relative;
+    padding: 40px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.number-line {
+    position: relative;
+    height: 4px;
+    background-color: var(--line-color);
+    width: max-content;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.tick {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background-color: var(--tick-color);
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tick-label {
+    position: absolute;
+    top: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.tick:hover .tick-label {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.tick.zero .tick-label {
+    color: var(--danger-color);
+    font-size: 1.3rem;
+}
+
+.character {
+    position: absolute;
+    font-size: 2rem;
+    top: -35px;
+    transform: translateX(-50%);
+    transition: left 0.5s ease-in-out;
+    z-index: 10;
+}
+
+.arrow-path {
+    position: absolute;
+    height: 10px;
+    top: -15px;
+    background-color: rgba(255, 193, 7, 0.5);
+    border-radius: 5px;
+    z-index: 5;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Boss Area */
+.boss-area {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 2px solid var(--danger-color);
+    border-radius: 15px;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.boss-character {
+    font-size: 3rem;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.boss-health-bar {
+    width: 100%;
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.health-fill {
+    height: 100%;
+    background: var(--danger-color);
+    transition: width 0.3s ease;
+}
+
+/* =========================================
+   Options & Feedback
+   ========================================= */
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.option-btn {
+    font-size: 1.2rem;
+    padding: 15px 25px;
+    min-width: 100px;
+    background: var(--bg-main);
+    color: var(--text-main);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.option-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.option-btn.correct {
+    background: var(--success-color) !important;
+    color: white !important;
+    border-color: var(--success-color) !important;
+    animation: successPulse 0.5s;
+}
+
+.option-btn.wrong {
+    background: var(--danger-color) !important;
+    color: white !important;
+    border-color: var(--danger-color) !important;
+    animation: shake 0.5s;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+}
+
+.game-tools {
+    margin-top: 10px;
+}
+
+.feedback-area {
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+.feedback-area.success {
+    background: rgba(139, 195, 74, 0.2);
+    border: 1px solid var(--success-color);
+}
+
+.feedback-area.error {
+    background: rgba(244, 67, 54, 0.2);
+    border: 1px solid var(--danger-color);
+}
+
+.feedback-area button {
+    margin-top: 15px;
+}
+
+/* =========================================
+   Modals & Overlays
+   ========================================= */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.tutorial-box {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    border: 2px solid var(--secondary-color);
+}
+
+.tutorial-animation {
+    font-size: 3rem;
+    margin: 20px 0;
+}
+
+/* =========================================
+   Result Screens
+   ========================================= */
+.result-box {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border: 2px solid var(--primary-color);
+    width: 100%;
+    max-width: 500px;
+}
+
+.stars-result {
+    font-size: 3rem;
+    margin: 20px 0;
+    letter-spacing: 10px;
+}
+
+.star {
+    opacity: 0.2;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.star.active {
+    opacity: 1;
+    transform: scale(1.2);
+    text-shadow: 0 0 10px gold;
+}
+
+.result-stats, .final-stats {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 600px) {
+    .title-container h1 { font-size: 2rem; }
+    .start-stats { flex-direction: column; gap: 10px; text-align: center; }
+    .map-container { height: 400px; }
+    .option-btn { width: 100%; }
+    .result-actions { flex-direction: column; }
+    .stats { font-size: 1rem; gap: 10px;}
+}
