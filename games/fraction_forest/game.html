@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جنگل کسرها</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Top Bar -->
+        <header id="top-bar" class="hidden">
+            <div class="stats">
+                <div class="stat-item" id="score-display">🏆 امتیاز: <span>0</span></div>
+                <div class="stat-item" id="stars-display">⭐ ستاره‌ها: <span>0</span></div>
+                <div class="stat-item" id="lives-display">❤️ جان: <span>3</span></div>
+            </div>
+            <div class="controls">
+                <button id="btn-sound" class="icon-btn">🔊</button>
+                <button id="btn-theme" class="icon-btn">🌙</button>
+                <button id="btn-home" class="icon-btn">🏠</button>
+            </div>
+        </header>
+
+        <!-- Start Screen -->
+        <section id="screen-start" class="screen active">
+            <div class="content-box">
+                <h1 class="title">🌳 جنگل کسرها 🌳</h1>
+                <p class="subtitle">به جنگل کسرها خوش آمدی! قسمت‌ها را پیدا کن، کسرها را بساز و گنج جنگل را آزاد کن.</p>
+                <div class="start-stats">
+                    <p>🏆 بهترین امتیاز: <span id="best-score-display">0</span></p>
+                    <p>📍 آخرین مرحله: <span id="last-level-display">1</span></p>
+                </div>
+                <button id="btn-start" class="btn primary-btn">🎮 شروع ماجراجویی</button>
+            </div>
+        </section>
+
+        <!-- Map Screen -->
+        <section id="screen-map" class="screen hidden">
+            <div class="content-box map-container">
+                <h2>نقشه جنگل کسرها</h2>
+                <div id="map-nodes" class="map-nodes">
+                    <!-- Nodes will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Level Screen -->
+        <section id="screen-level" class="screen hidden">
+            <div class="level-header">
+                <h2 id="level-title">عنوان مرحله</h2>
+                <button id="btn-hint" class="btn hint-btn">💡 راهنمایی</button>
+            </div>
+            <div class="level-content">
+                <!-- Tutorial Area -->
+                <div id="tutorial-area" class="tutorial-area hidden">
+                    <p id="tutorial-text"></p>
+                    <div id="tutorial-visual"></div>
+                    <button id="btn-close-tutorial" class="btn secondary-btn">متوجه شدم</button>
+                </div>
+
+                <!-- Main Game Area -->
+                <div id="game-area" class="game-area">
+                    <div id="question-container" class="question-container"></div>
+
+                    <div id="interactive-area" class="interactive-area">
+                        <!-- Interactive fraction builder / drag-drop will be injected here -->
+                    </div>
+
+                    <div id="options-container" class="options-container hidden">
+                        <!-- Multiple choice options (if any) -->
+                    </div>
+
+                    <div id="action-container" class="action-container">
+                        <button id="btn-submit" class="btn primary-btn">بررسی پاسخ</button>
+                    </div>
+                </div>
+
+                <!-- Feedback Area -->
+                <div id="feedback-area" class="feedback-area hidden">
+                    <p id="feedback-message"></p>
+                    <button id="btn-next-question" class="btn secondary-btn">ادامه</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Boss Screen (Level 8) -->
+        <section id="screen-boss" class="screen hidden">
+            <div class="boss-header">
+                <h2>جادوگر کسرها 🧙‍♂️</h2>
+                <div class="boss-health">
+                    <div class="health-bar-container">
+                        <div id="boss-health-bar" class="health-bar" style="width: 100%;"></div>
+                    </div>
+                    <span>جان جادوگر</span>
+                </div>
+            </div>
+            <div class="boss-content">
+                <!-- Same structure as level screen for questions -->
+                <div id="boss-question-container" class="question-container"></div>
+                <div id="boss-interactive-area" class="interactive-area"></div>
+                <div id="boss-action-container" class="action-container">
+                    <button id="btn-boss-submit" class="btn primary-btn">حمله ⚔️</button>
+                </div>
+                <div id="boss-feedback-area" class="feedback-area hidden">
+                    <p id="boss-feedback-message"></p>
+                    <button id="btn-boss-next" class="btn secondary-btn">سوال بعدی</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- End Screen -->
+        <section id="screen-end" class="screen hidden">
+            <div class="content-box">
+                <h1 class="title">🎉 تبریک! 🎉</h1>
+                <p class="subtitle">تو جنگل کسرها را نجات دادی!</p>
+                <div class="end-stats">
+                    <p>امتیاز: <span id="end-score">0</span></p>
+                    <p>پاسخ‌های صحیح: <span id="end-correct">0</span></p>
+                    <p>پاسخ‌های غلط: <span id="end-wrong">0</span></p>
+                    <p>ستاره‌ها: <span id="end-stars">0</span></p>
+                </div>
+                <div class="end-actions">
+                    <button id="btn-restart" class="btn secondary-btn">🔄 بازی دوباره</button>
+                    <button id="btn-back-to-map" class="btn primary-btn">🗺️ بازگشت به نقشه</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/fractions.js"></script>
+    <script src="js/questions.js"></script>
+    <script src="js/levels.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
