@@ -509,9 +509,12 @@ function handleDropOnSide(targetSideEl) {
             return;
         }
 
-        // Remove coefficient from source term
-        termToMove.coefficient = 1;
-        termToMove.sign = 1; // It becomes just 'x' or whatever
+        // Divide all terms on the source side
+        fromExpr.terms = fromExpr.terms.map(t => {
+            const currentVal = t.coefficient * t.sign;
+            const newVal = currentVal / divisor;
+            return new Term(Math.abs(newVal), t.variable, newVal < 0 ? -1 : 1);
+        });
 
         // Divide all terms on the target side
         toExpr.terms = toExpr.terms.map(t => {
@@ -521,15 +524,13 @@ function handleDropOnSide(targetSideEl) {
         });
 
     } else {
-        // Standard transposition
-        // Extract term
-        const extractedTerm = fromExpr.terms.splice(dragState.sourceIndex, 1)[0];
+        // Instead of moving the term, add its inverse to both sides
+        const termToInvert = fromExpr.terms[dragState.sourceIndex];
+        const invertedTerm = termToInvert.clone();
+        invertedTerm.sign *= -1;
 
-        // Flip sign
-        extractedTerm.sign *= -1;
-
-        // Add to new side
-        toExpr.terms.push(extractedTerm);
+        fromExpr.terms.push(invertedTerm.clone());
+        toExpr.terms.push(invertedTerm.clone());
     }
 
     state.history.push(newEq);
