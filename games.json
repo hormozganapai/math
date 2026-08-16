@@ -5,10 +5,6 @@
     "integer_city",
     "algebra_land",
     "magic_square",
-    "fraction_forest",
-    "geometry_land",
-    "integer_valley",
-    "probability_island",
-    "statistics_city"
+    "fraction_forest"
   ]
 }
