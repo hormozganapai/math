@@ -199,7 +199,7 @@ input{ font-family: inherit; }
 
 /* چالش معادله (قطار/جزیره/قلعه) */
 .equation-display{
-  font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 900; direction: ltr; text-align: center;
+  font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 900; direction: ltr; unicode-bidi: isolate; text-align: center;
   background: var(--bg); border-radius: var(--radius-md); padding: 22px 10px; margin-bottom: 20px; letter-spacing: 1px;
 }
 .equation-display.train-theme{ border: 2px solid var(--blue); }

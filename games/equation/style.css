@@ -122,6 +122,7 @@
   font-size: clamp(1.8rem, 5vw, 2.6rem);
   font-weight: 900;
   direction: ltr;
+  unicode-bidi: isolate;
   background: var(--bg);
   border-radius: var(--radius-md);
   padding: 26px 10px;
