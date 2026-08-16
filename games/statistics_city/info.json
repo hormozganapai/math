@@ -4,6 +4,6 @@
   "category": "آمار",
   "description": "یادگیری مفهومی آمار با جمع‌آوری، مرتب‌سازی، نمودار و تحلیل داده‌ها",
   "icon": "🏙️",
-  "url": "game.html",
+  "url": "games/statistics_city/game.html",
   "difficulty": "آسان تا سخت"
 }
