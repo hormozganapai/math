@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آزمایشگاه جبر</title>
+    <script src="../../js/theme.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animation.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="interactive-algebra">
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="../../index.html" class="logo">
+            <span class="logo-badge">π</span>
+            Math<span class="brand-play">Play</span>
+        </a>
+        <div class="header-stats">
+            <button class="theme-toggle-btn" id="themeToggle" type="button" title="تغییر تم روشن/تاریک">🌙</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="algebra-header">
+            <h1>آزمایشگاه جبر 🧪</h1>
+            <p>معادلات را بنویسید و با کشیدن جملات آن‌ها را حل کنید.</p>
+        </div>
+
+        <div class="control-panel">
+            <div class="input-group">
+                <label for="example-select">مثال‌ها:</label>
+                <select id="example-select">
+                    <option value="">انتخاب کنید...</option>
+                    <option value="2x + 5 = 15">2x + 5 = 15</option>
+                    <option value="4x - 2x + 7 = 19">4x - 2x + 7 = 19</option>
+                    <option value="3x = 12">3x = 12</option>
+                    <option value="5x - 3 = 2x + 6">5x - 3 = 2x + 6</option>
+                    <option value="3(x + 4) = 24">3(x + 4) = 24</option>
+                </select>
+            </div>
+            <div class="input-group custom-input-group">
+                <label for="custom-equation">معادله شما:</label>
+                <div class="custom-input-row">
+                    <input type="text" id="custom-equation" placeholder="مثال: 2x + 3 = 7" dir="ltr">
+                    <button class="btn btn-primary" id="load-equation">بارگذاری</button>
+                </div>
+            </div>
+            <div class="actions-group">
+                <button class="btn btn-secondary" id="undo-btn" disabled>برگشت ↩️</button>
+                <button class="btn btn-secondary" id="redo-btn" disabled>جلو ↪️</button>
+                <button class="btn btn-secondary" id="reset-btn">پاک کردن 🔄</button>
+            </div>
+        </div>
+
+        <div class="workspace-container">
+            <div class="workspace" id="workspace">
+                <!-- Equation rows will be generated here -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="js/algebra.js" type="module"></script>
+</body>
+</html>
