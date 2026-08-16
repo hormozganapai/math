@@ -134,16 +134,16 @@ class Game {
             document.getElementById('level-actions').classList.remove('hidden');
 
             // Delegate rendering logic to LevelManager
-            if (window.LevelManager) {
-                window.LevelManager.renderLevel(levelData, this);
+            if (typeof LevelManager !== 'undefined') {
+                LevelManager.renderLevel(levelData, this);
             }
         };
     }
 
     startBossBattle() {
         UI.showScreen('screen-boss');
-        if (window.LevelManager) {
-            window.LevelManager.startBossBattle(this);
+        if (typeof LevelManager !== 'undefined') {
+            LevelManager.startBossBattle(this);
         }
     }
 
