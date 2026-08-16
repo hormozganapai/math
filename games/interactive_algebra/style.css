@@ -1,0 +1,231 @@
+.algebra-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+    background: var(--bg-alt);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: var(--ink);
+}
+
+.input-group select,
+.input-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px !important;
+    border: 2px solid var(--line) !important;
+    border-radius: 8px !important;
+    background-color: var(--bg-alt) !important;
+    color: var(--ink);
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 1rem;
+    display: block;
+    min-height: 45px;
+}
+
+.input-group input[dir="ltr"] {
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+.custom-input-group {
+    display: flex;
+    flex-direction: column; /* We want the label above the input + button group */
+}
+
+.custom-input-group label {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.custom-input-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.custom-input-row input {
+    width: 100%;
+    box-sizing: border-box;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+}
+
+.custom-input-row button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin: 0;
+}
+
+.actions-group {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.workspace-container {
+    direction: ltr; /* Ensure math LTR layout */
+    unicode-bidi: isolate;
+    background: var(--bg-alt);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    min-height: 400px;
+    padding: 2rem;
+    overflow-x: auto;
+}
+
+.workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.equation-row {
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+    font-size: 2rem;
+    color: var(--ink);
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.equation-row.last-step {
+    background: rgba(46, 155, 255, 0.1);
+    box-shadow: inset 0 0 0 2px var(--blue);
+}
+
+.side {
+    display: flex;
+    align-items: center;
+    min-width: 50px;
+    justify-content: center;
+}
+
+.equals-sign {
+    margin: 0 1rem;
+    font-weight: bold;
+    color: var(--orange);
+}
+
+.term {
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    margin: 0 0.1rem;
+    transition: transform 0.1s, background-color 0.2s;
+    user-select: none;
+    touch-action: none;
+}
+
+.term:hover {
+    background: rgba(46, 155, 255, 0.1);
+}
+
+.term:active {
+    cursor: grabbing;
+}
+
+.term.dragging {
+    opacity: 0.5;
+}
+
+/* Specific part styling inside a term */
+.term .sign {
+    margin-right: 2px;
+    color: var(--ink-soft);
+}
+.term .coef {
+    font-weight: bold;
+    color: var(--blue);
+}
+.term .var {
+    font-style: italic;
+    color: var(--orange);
+}
+
+.operator {
+    margin: 0 0.25rem;
+    font-weight: bold;
+    color: var(--ink-soft);
+}
+
+.paren {
+    font-weight: normal;
+    color: var(--ink);
+}
+
+/* Dragging overlay for ghost */
+.drag-ghost {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    font-family: monospace;
+    font-size: 2rem;
+    background: var(--bg-alt);
+    border: 2px solid var(--blue);
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    transition: transform 0.05s linear;
+}
+
+.drag-ghost .sign { margin-right: 2px; color: var(--ink-soft); }
+.drag-ghost .coef { font-weight: bold; color: var(--blue); }
+.drag-ghost .var { font-style: italic; color: var(--orange); }
+
+/* Droppable highlights */
+.droppable-target {
+    background: rgba(255, 107, 53, 0.2);
+    box-shadow: inset 0 0 0 2px var(--orange);
+}
+
+.workspace-empty {
+    color: var(--ink-soft);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    font-family: 'Vazirmatn', sans-serif;
+    direction: rtl;
+}
+
+/* Animations */
+@keyframes fadeInSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animated-row {
+    animation: fadeInSlideDown 0.4s ease forwards;
+}
