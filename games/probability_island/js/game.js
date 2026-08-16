@@ -113,6 +113,7 @@ class Game {
 
         document.getElementById('prediction-phase').classList.add('hidden');
         document.getElementById('experiment-phase').classList.add('hidden');
+        document.getElementById('experiment-controls').classList.remove('hidden');
         document.getElementById('feedback-phase').classList.add('hidden');
         document.getElementById('boss-phase').classList.add('hidden');
         document.getElementById('simulation-area').classList.remove('hidden');
@@ -197,6 +198,7 @@ class Game {
         // Show experiment phase
         document.getElementById('prediction-phase').classList.add('hidden');
         document.getElementById('experiment-phase').classList.remove('hidden');
+        document.getElementById('experiment-controls').classList.remove('hidden');
         document.getElementById('results-area').classList.add('hidden');
     }
 
@@ -273,7 +275,7 @@ class Game {
         fbPhase.className = 'phase-box success'; // default styling
 
         if (this.currentLevelIndex !== 5) {
-            document.getElementById('experiment-phase').classList.add('hidden');
+            document.getElementById('experiment-controls').classList.add('hidden');
 
             document.getElementById('feedback-title').textContent = 'نتیجه آزمایش';
             document.getElementById('feedback-text').textContent = 'دیدی؟ وقتی آزمایش را انجام می‌دهیم، نتیجه واقعی مشخص می‌شود. هرچه تعداد آزمایش بیشتر شود، نتیجه به احتمال ریاضی نزدیک‌تر می‌شود.';
@@ -294,6 +296,7 @@ class Game {
         document.getElementById('question-text').textContent = 'خودت آزمایش کن! تعداد پرتاب سکه را انتخاب کن و ببین نتایج چطور تغییر می‌کنند.';
         this.sim.renderCoin();
         document.getElementById('experiment-phase').classList.remove('hidden');
+        document.getElementById('experiment-controls').classList.remove('hidden');
     }
 
     startBossBattle() {
