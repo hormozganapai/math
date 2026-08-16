@@ -268,8 +268,8 @@ function renderMap() {
     levels.forEach((level, index) => {
         const node = document.createElement('div');
         node.className = 'map-node';
-        node.style.left = level.x + 'px';
-        node.style.top = level.y + 'px';
+        node.style.left = (level.x / 800 * 100) + '%';
+        node.style.top = (level.y / 600 * 100) + '%';
         node.innerHTML = level.icon;
 
         const label = document.createElement('div');
