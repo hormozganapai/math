@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزیره احتمال - MathPlay</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="light-mode">
+    <div id="game-container">
+        <!-- Header / HUD -->
+        <header id="game-header" class="hidden">
+            <div class="hud-left">
+                <span id="score-display">🏆 <span id="score-val">0</span></span>
+                <span id="stars-display">⭐ <span id="stars-val">0</span></span>
+            </div>
+            <div class="hud-center">
+                <h2 id="level-title">جزیره احتمال</h2>
+            </div>
+            <div class="hud-right">
+                <span id="lives-display">❤️❤️❤️</span>
+                <button id="btn-sound" class="icon-btn">🔊</button>
+                <button id="btn-theme" class="icon-btn">🌙</button>
+            </div>
+        </header>
+
+        <!-- Screens -->
+        <!-- 1. Start Screen -->
+        <section id="screen-start" class="screen active">
+            <div class="start-content">
+                <h1 class="game-title">🏝️ جزیره احتمال</h1>
+                <p class="game-subtitle">به جزیره احتمال خوش آمدی!<br>آزمایش کن، پیش‌بینی کن و راز شانس را کشف کن.</p>
+                <div class="stats-box">
+                    <p>🏆 بهترین امتیاز: <span id="best-score-display">0</span></p>
+                    <p>⭐ ستاره‌ها: <span id="total-stars-display">0</span></p>
+                </div>
+                <button id="btn-start" class="btn-primary">🎮 شروع ماجراجویی</button>
+            </div>
+        </section>
+
+        <!-- 2. Map Screen -->
+        <section id="screen-map" class="screen hidden">
+            <h2>نقشه جزیره</h2>
+            <div class="map-container">
+                <button class="level-node" data-level="1" id="node-1">
+                    <span class="icon">🪙</span>
+                    <span class="name">ساحل سکه</span>
+                    <span class="status"></span>
+                </button>
+                <div class="path"></div>
+                <button class="level-node" data-level="2" id="node-2" disabled>
+                    <span class="icon">🎲</span>
+                    <span class="name">خلیج تاس</span>
+                    <span class="status">🔒</span>
+                </button>
+                <div class="path"></div>
+                <button class="level-node" data-level="3" id="node-3" disabled>
+                    <span class="icon">🎡</span>
+                    <span class="name">گردونه شانس</span>
+                    <span class="status">🔒</span>
+                </button>
+                <div class="path"></div>
+                <button class="level-node" data-level="4" id="node-4" disabled>
+                    <span class="icon">🔮</span>
+                    <span class="name">غار پیش‌بینی</span>
+                    <span class="status">🔒</span>
+                </button>
+                <div class="path"></div>
+                <button class="level-node" data-level="5" id="node-5" disabled>
+                    <span class="icon">🌊</span>
+                    <span class="name">دریای آزمایش</span>
+                    <span class="status">🔒</span>
+                </button>
+                <div class="path"></div>
+                <button class="level-node boss-node" data-level="6" id="node-6" disabled>
+                    <span class="icon">🏰</span>
+                    <span class="name">قلعه احتمال</span>
+                    <span class="status">🔒</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. Tutorial Screen -->
+        <section id="screen-tutorial" class="screen hidden">
+            <div class="tutorial-box">
+                <h3 id="tutorial-title"></h3>
+                <p id="tutorial-text"></p>
+                <button id="btn-tutorial-next" class="btn-primary">ادامه</button>
+            </div>
+        </section>
+
+        <!-- 4. Play Screen (Prediction & Experiment) -->
+        <section id="screen-play" class="screen hidden">
+            <div class="question-container">
+                <p id="question-text" class="question-text"></p>
+            </div>
+
+            <div id="simulation-area" class="simulation-area">
+                <!-- Simulation elements (coin, dice, wheel, etc.) will be injected here -->
+            </div>
+
+            <!-- Prediction Phase -->
+            <div id="prediction-phase" class="phase-box">
+                <h4>حدس تو چیست؟</h4>
+                <div id="prediction-options" class="options-grid"></div>
+                <div class="hint-container">
+                    <button id="btn-hint" class="btn-secondary">💡 راهنمایی (-3 امتیاز)</button>
+                    <p id="hint-text" class="hidden"></p>
+                </div>
+            </div>
+
+            <!-- Experiment Phase -->
+            <div id="experiment-phase" class="phase-box hidden">
+                <h4>آزمایش</h4>
+                <div id="experiment-controls">
+                    <label>تعداد آزمایش:</label>
+                    <select id="experiment-count">
+                        <option value="1">1</option>
+                        <option value="10">10</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    <button id="btn-run-experiment" class="btn-action">اجرا</button>
+                </div>
+
+                <div id="results-area" class="results-area hidden">
+                    <!-- Charts and results injected here -->
+                </div>
+            </div>
+
+            <!-- Result & Feedback Phase -->
+            <div id="feedback-phase" class="phase-box hidden">
+                <h4 id="feedback-title"></h4>
+                <p id="feedback-text"></p>
+                <button id="btn-next-question" class="btn-primary">سؤال بعدی</button>
+            </div>
+
+            <!-- Boss Battle Phase (Level 6) -->
+            <div id="boss-phase" class="phase-box hidden">
+                <div class="boss-stats">
+                    <span>جادوگر شانس 🧙‍♂️</span>
+                    <div class="boss-health-bar"><div id="boss-health-fill"></div></div>
+                </div>
+                <p id="boss-question-text" class="question-text"></p>
+                <div id="boss-options" class="options-grid"></div>
+            </div>
+
+        </section>
+
+        <!-- 5. Level Complete Screen -->
+        <section id="screen-level-complete" class="screen hidden">
+            <div class="complete-box">
+                <h2>پایان مرحله!</h2>
+                <div id="level-stars" class="stars-display-large"></div>
+                <p id="level-feedback-msg"></p>
+                <button id="btn-back-to-map" class="btn-primary">🗺️ بازگشت به نقشه</button>
+            </div>
+        </section>
+
+        <!-- 6. Victory Screen -->
+        <section id="screen-victory" class="screen hidden">
+            <div class="victory-box">
+                <h2>🎉 تبریک!</h2>
+                <p>تو راز جزیره احتمال را کشف کردی و جادوگر شانس را شکست دادی!</p>
+                <div class="final-stats">
+                    <p>امتیاز نهایی: <span id="final-score">0</span></p>
+                    <p>تعداد پاسخ صحیح: <span id="final-correct">0</span></p>
+                    <p>تعداد پاسخ غلط: <span id="final-wrong">0</span></p>
+                    <p>تعداد کل آزمایش‌ها: <span id="final-experiments">0</span></p>
+                </div>
+                <button id="btn-play-again" class="btn-primary">🔄 بازی دوباره</button>
+            </div>
+        </section>
+
+        <!-- Game Over Screen (No lives) -->
+        <section id="screen-game-over" class="screen hidden">
+            <div class="game-over-box">
+                <h2>💔 جان‌هایت تمام شد!</h2>
+                <p>دوباره آزمایش کن!</p>
+                <button id="btn-retry-level" class="btn-primary">تلاش مجدد</button>
+                <button id="btn-map-from-gameover" class="btn-secondary">بازگشت به نقشه</button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/game.js"></script>
+</body>
+</html>
