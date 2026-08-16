@@ -4,6 +4,6 @@
   "category": "اعداد صحیح",
   "description": "یادگیری مفهومی اعداد صحیح با ماجراجویی در یک دره اسرارآمیز",
   "icon": "🏔️",
-  "url": "game.html",
+  "url": "games/integer_valley/game.html",
   "difficulty": "آسان تا سخت"
 }

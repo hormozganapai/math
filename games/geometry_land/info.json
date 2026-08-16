@@ -4,6 +4,6 @@
   "category": "هندسه",
   "description": "یادگیری مفهومی هندسه با ساخت شکل، اندازه‌گیری و حل چالش‌های هندسی",
   "icon": "🏰",
-  "url": "game.html",
+  "url": "games/geometry_land/game.html",
   "difficulty": "آسان تا سخت"
 }
