@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شهر آمار | Statistics City</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header: Stats & Settings -->
+        <header id="game-header" class="hidden">
+            <div class="stats">
+                <span id="score-display">🏆 امتیاز: 0</span>
+                <span id="lives-display">❤️❤️❤️</span>
+                <span id="stars-display">⭐⭐⭐</span>
+            </div>
+            <div class="controls">
+                <button id="btn-sound" title="صدا">🔊</button>
+                <button id="btn-theme" title="تاریک/روشن">🌙</button>
+                <button id="btn-home" title="خانه">🏠</button>
+            </div>
+        </header>
+
+        <!-- Screens -->
+
+        <!-- 1. Start Screen -->
+        <section id="screen-start" class="screen active">
+            <h1>🏙️ شهر آمار</h1>
+            <p>به شهر آمار خوش آمدی!<br>داده‌ها را جمع کن، نمودار بساز و رازهای پنهان در اطلاعات را کشف کن.</p>
+
+            <div class="progress-info">
+                <p>🏆 بهترین امتیاز: <span id="best-score">0</span></p>
+                <p>📈 درصد پیشرفت: <span id="progress-percent">0</span>%</p>
+            </div>
+
+            <div class="menu-buttons">
+                <button id="btn-start-game" class="btn primary">🎮 شروع مأموریت</button>
+                <button id="btn-data-lab" class="btn secondary">🧪 آزمایشگاه داده</button>
+            </div>
+        </section>
+
+        <!-- 2. Map Screen -->
+        <section id="screen-map" class="screen hidden">
+            <h2>🗺️ نقشه شهر آمار</h2>
+            <div class="map-container">
+                <div class="map-node" data-level="1" id="node-1">🏫 مدرسه داده‌ها</div>
+                <div class="map-node locked" data-level="2" id="node-2">🔒 میدان جمع‌آوری</div>
+                <div class="map-node locked" data-level="3" id="node-3">🔒 خیابان مرتب‌سازی</div>
+                <div class="map-node locked" data-level="4" id="node-4">🔒 میدان جدول</div>
+                <div class="map-node locked" data-level="5" id="node-5">🔒 میدان نمودارها</div>
+                <div class="map-node locked" data-level="6" id="node-6">🔒 مرکز میانگین</div>
+                <div class="map-node locked" data-level="7" id="node-7">🔒 میدان میانه</div>
+                <div class="map-node locked" data-level="8" id="node-8">🔒 میدان نما</div>
+                <div class="map-node locked" data-level="9" id="node-9">🔒 مرکز تحلیل</div>
+                <div class="map-node locked boss" data-level="10" id="node-10">🔒 تالار بزرگ آمار</div>
+            </div>
+        </section>
+
+        <!-- 3. Active Level Screen (Generic container for all levels) -->
+        <section id="screen-level" class="screen hidden">
+            <h2 id="level-title">عنوان مرحله</h2>
+            <div class="tutorial-box" id="tutorial-box">
+                <p id="tutorial-text"></p>
+                <button id="btn-close-tutorial" class="btn small">شروع تمرین</button>
+            </div>
+
+            <div id="level-content" class="level-content hidden">
+                <!-- Level specific HTML will be injected here by JS -->
+            </div>
+
+            <div class="level-actions hidden" id="level-actions">
+                <button id="btn-hint" class="btn warning">💡 راهنمایی</button>
+                <button id="btn-submit" class="btn success">✅ بررسی پاسخ</button>
+            </div>
+        </section>
+
+        <!-- 4. Boss Battle Screen -->
+        <section id="screen-boss" class="screen hidden">
+            <h2>🏛️ نبرد با رئیس خرابکار داده‌ها</h2>
+            <div class="boss-stats">
+                <div class="boss-health">قدرت رئیس: <progress id="boss-hp" value="100" max="100"></progress></div>
+                <div class="player-health">مأموریت‌ها: <span id="boss-missions">0/10</span></div>
+            </div>
+
+            <div id="boss-question-container">
+                <!-- Boss questions injected here -->
+            </div>
+        </section>
+
+        <!-- 5. Data Lab / Builder Screen -->
+        <section id="screen-data-lab" class="screen hidden">
+            <h2>🧪 آزمایشگاه داده</h2>
+            <div class="lab-controls">
+                <input type="number" id="lab-input" placeholder="عدد وارد کنید...">
+                <button id="btn-lab-add" class="btn primary">➕ افزودن</button>
+                <button id="btn-lab-clear" class="btn danger">🗑️ پاک کردن</button>
+            </div>
+
+            <div class="lab-data-display" id="lab-data-list">
+                <!-- Data blocks will appear here -->
+            </div>
+
+            <div class="lab-analysis hidden" id="lab-analysis">
+                <h3>تحلیل داده‌ها:</h3>
+                <p>مرتب‌شده: <span id="lab-sorted"></span></p>
+                <p>تعداد: <span id="lab-count"></span></p>
+                <p>مجموع: <span id="lab-sum"></span></p>
+                <p>میانگین: <span id="lab-mean"></span></p>
+                <p>میانه: <span id="lab-median"></span></p>
+                <p>نما: <span id="lab-mode"></span></p>
+
+                <div class="lab-chart-container">
+                    <canvas id="lab-chart" width="400" height="200"></canvas>
+                </div>
+            </div>
+            <button class="btn secondary btn-back-map" style="margin-top:20px;">بازگشت</button>
+        </section>
+
+        <!-- 6. Game Over / Victory Screen -->
+        <section id="screen-end" class="screen hidden">
+            <h2 id="end-title">🎉 تبریک!</h2>
+            <p id="end-message">تو شهر آمار را نجات دادی!</p>
+
+            <div class="end-stats">
+                <p>🏆 امتیاز: <span id="final-score">0</span></p>
+                <p>✅ پاسخ صحیح: <span id="final-correct">0</span></p>
+                <p>❌ پاسخ غلط: <span id="final-wrong">0</span></p>
+                <p>⭐ ستاره‌ها: <span id="final-stars">0</span></p>
+            </div>
+
+            <div class="menu-buttons">
+                <button id="btn-play-again" class="btn primary">🔄 بازی دوباره</button>
+                <button id="btn-back-map" class="btn secondary btn-back-map">🗺️ بازگشت به نقشه</button>
+            </div>
+        </section>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container"></div>
+
+        <!-- Modal for hints / feedbacks -->
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3 id="modal-title">پیام</h3>
+                <p id="modal-text">متن پیام</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/levels.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
