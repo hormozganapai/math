@@ -215,10 +215,10 @@ class Game {
             let heads = 0, tails = 0;
             for(let i=0; i<count; i++) { if(Math.random() < 0.5) heads++; else tails++; }
             results = [
-                {label: 'شیر', value: heads, total: count, color: '#f1c40f'},
-                {label: 'خط', value: tails, total: count, color: '#e67e22'}
+                {label: 'رو', value: heads, total: count, color: '#f1c40f'},
+                {label: 'پشت', value: tails, total: count, color: '#e67e22'}
             ];
-            this.sim.animateCoin(heads > tails ? 'شیر' : 'خط', () => this.showResults(results, count));
+            this.sim.animateCoin(heads > tails ? 'رو' : 'پشت', () => this.showResults(results, count));
 
         } else if (type === 'dice') {
             soundManager.play('dice');

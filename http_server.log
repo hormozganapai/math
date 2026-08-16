@@ -18,3 +18,13 @@
 127.0.0.1 - - [16/Aug/2026 13:13:24] "GET /js/questions.js HTTP/1.1" 200 -
 127.0.0.1 - - [16/Aug/2026 13:13:24] "GET /js/sound.js HTTP/1.1" 200 -
 127.0.0.1 - - [16/Aug/2026 13:13:24] "GET /js/levels.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /game.html HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /js/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /style.css HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /js/sound.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /js/simulation.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /js/ui.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /js/score.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /js/storage.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /js/questions.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2026 13:18:18] "GET /js/levels.js HTTP/1.1" 200 -

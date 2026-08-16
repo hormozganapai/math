@@ -5,10 +5,10 @@ export class QuestionGenerator {
     generateCoinQuestion() {
         return {
             type: 'prediction',
-            text: 'اگر یک سکه را پرتاب کنیم، احتمال آمدن شیر بیشتر است یا خط؟',
+            text: 'اگر یک سکه را پرتاب کنیم، احتمال آمدن رو بیشتر است یا پشت؟',
             options: [
-                { text: 'شیر', isCorrect: false },
-                { text: 'خط', isCorrect: false },
+                { text: 'رو', isCorrect: false },
+                { text: 'پشت', isCorrect: false },
                 { text: 'هر دو برابر', isCorrect: true }
             ],
             hint: 'یک سکه سالم دو طرف دارد و شانس هر دو طرف مساوی است.',
@@ -86,7 +86,7 @@ export class QuestionGenerator {
     // Boss Battle Questions
     generateBossQuestions(count) {
         const qPool = [
-            { text: 'احتمال شیر آمدن در پرتاب سکه چقدر است؟', options: [{t: '۱/۲', c:true}, {t: '۱/۳', c:false}, {t: '۱/۴', c:false}] },
+            { text: 'احتمال رو آمدن در پرتاب سکه چقدر است؟', options: [{t: '۱/۲', c:true}, {t: '۱/۳', c:false}, {t: '۱/۴', c:false}] },
             { text: 'احتمال آمدن عدد ۵ در پرتاب تاس چقدر است؟', options: [{t: '۱/۶', c:true}, {t: '۱/۲', c:false}, {t: '۵/۶', c:false}] },
             { text: 'احتمال آمدن عدد فرد در پرتاب تاس چقدر است؟', options: [{t: '۱/۲', c:true}, {t: '۱/۳', c:false}, {t: '۱/۶', c:false}] },
             { text: 'اگر در کیسه‌ای ۴ مهره سبز و ۱ مهره زرد باشد، احتمال سبز چقدر است؟', options: [{t: '۴/۵', c:true}, {t: '۱/۵', c:false}, {t: '۴/۴', c:false}] },
@@ -94,7 +94,7 @@ export class QuestionGenerator {
             { text: 'مجموع احتمال‌های همه پیشامدهای ممکن چقدر است؟', options: [{t: '۱', c:true}, {t: '۰', c:false}, {t: 'بستگی دارد', c:false}] },
             { text: 'احتمال پیشامدی که حتماً رخ می‌دهد چقدر است؟', options: [{t: '۱', c:true}, {t: '۰', c:false}, {t: '۱/۲', c:false}] },
             { text: 'احتمال پیشامد غیرممکن چقدر است؟', options: [{t: '۰', c:true}, {t: '۱', c:false}, {t: '۱/۲', c:false}] },
-            { text: 'کدام اتفاق در پرتاب دو سکه ممکن نیست؟', options: [{t: 'سه شیر', c:true}, {t: 'دو شیر', c:false}, {t: 'شیر و خط', c:false}] },
+            { text: 'کدام اتفاق در پرتاب دو سکه ممکن نیست؟', options: [{t: 'سه رو', c:true}, {t: 'دو رو', c:false}, {t: 'رو و پشت', c:false}] },
             { text: 'احتمال اینکه تاس عددی کمتر از ۷ بیاورد چقدر است؟', options: [{t: '۱', c:true}, {t: '۰', c:false}, {t: '۶', c:false}] }
         ];
 
