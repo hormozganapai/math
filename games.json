@@ -9,6 +9,7 @@
     "geometry_land",
     "integer_valley",
     "probability_island",
-    "statistics_city"
+    "statistics_city",
+    "interactive_algebra"
   ]
 }
