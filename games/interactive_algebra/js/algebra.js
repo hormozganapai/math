@@ -390,7 +390,7 @@ function handlePointerMove(e) {
 
     // Is it another term?
     const targetTerm = elemBelow.closest('.term');
-    if (targetTerm && targetTerm !== dragState.element) {
+    if (targetTerm && targetTerm !== dragState.element && targetTerm.dataset.side === dragState.sourceSide) {
         targetTerm.classList.add('droppable-target');
         return;
     }
@@ -424,7 +424,7 @@ function handlePointerUp(e) {
         const targetTerm = elemBelow.closest('.term');
         const targetSide = elemBelow.closest('.side');
 
-        if (targetTerm && targetTerm !== dragState.element) {
+        if (targetTerm && targetTerm !== dragState.element && targetTerm.dataset.side === dragState.sourceSide) {
             handleDropOnTerm(targetTerm);
         } else if (targetSide && targetSide.dataset.side !== dragState.sourceSide) {
             handleDropOnSide(targetSide);
