@@ -654,7 +654,7 @@ function generateCircleStep() {
     const task = tasks[Math.floor(Math.random() * tasks.length)];
     gameState.levelState.task = task.id;
 
-    els.instructionText.innerHTML = `با استفاده از نقاط قرمز روی محیط، یک <strong>${task.name}</strong> بساز.`;
+    els.instructionText.innerHTML = `با جابه‌جا کردن نقاط قرمز، یک <strong>${task.name}</strong> بساز.`;
 
     const svg = createSvgCanvas("0 0 400 300");
 
@@ -675,8 +675,8 @@ function generateCircleStep() {
     line.setAttribute('class', 'geo-line');
     svg.appendChild(line);
 
-    let p1Angle = 0;
-    let p2Angle = Math.PI / 2;
+    let p1 = {x: cx + r, y: cy};
+    let p2 = {x: cx, y: cy - r};
 
     const pt1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     pt1.setAttribute('class', 'geo-point'); pt1.setAttribute('r', 10);
@@ -687,25 +687,32 @@ function generateCircleStep() {
     svg.appendChild(pt2);
 
     const updateLine = () => {
-        const x1 = cx + r * Math.cos(p1Angle);
-        const y1 = cy + r * Math.sin(p1Angle);
-        const x2 = cx + r * Math.cos(p2Angle);
-        const y2 = cy + r * Math.sin(p2Angle);
+        pt1.setAttribute('cx', p1.x); pt1.setAttribute('cy', p1.y);
+        pt2.setAttribute('cx', p2.x); pt2.setAttribute('cy', p2.y);
 
-        pt1.setAttribute('cx', x1); pt1.setAttribute('cy', y1);
-        pt2.setAttribute('cx', x2); pt2.setAttribute('cy', y2);
+        line.setAttribute('x1', p1.x); line.setAttribute('y1', p1.y);
+        line.setAttribute('x2', p2.x); line.setAttribute('y2', p2.y);
 
-        line.setAttribute('x1', x1); line.setAttribute('y1', y1);
-        line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+        // Calculate distance of both points to center
+        const d1 = Math.sqrt(Math.pow(p1.x - cx, 2) + Math.pow(p1.y - cy, 2));
+        const d2 = Math.sqrt(Math.pow(p2.x - cx, 2) + Math.pow(p2.y - cy, 2));
 
-        // Calculate dist to center to determine if it's radius/diameter/chord
+        gameState.levelState.d1 = d1;
+        gameState.levelState.d2 = d2;
+
         // distance from line to center
-        const A = y2 - y1;
-        const B = x1 - x2;
-        const C = x2 * y1 - x1 * y2;
-        const dist = Math.abs(A * cx + B * cy + C) / Math.sqrt(A*A + B*B);
-
+        const A = p2.y - p1.y;
+        const B = p1.x - p2.x;
+        const C = p2.x * p1.y - p1.x * p2.y;
+        let dist = 0;
+        if (A !== 0 || B !== 0) {
+            dist = Math.abs(A * cx + B * cy + C) / Math.sqrt(A*A + B*B);
+        }
         gameState.levelState.distToCenter = dist;
+
+        // Length of the line
+        const length = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+        gameState.levelState.lineLength = length;
     };
 
     let activePt = null;
@@ -722,10 +729,23 @@ function generateCircleStep() {
         const mx = ((clientX - rect.left) / rect.width) * 400;
         const my = ((clientY - rect.top) / rect.height) * 300;
 
-        const angle = Math.atan2(my - cy, mx - cx);
+        const distToCenter = Math.sqrt(Math.pow(mx - cx, 2) + Math.pow(my - cy, 2));
+        let newX, newY;
 
-        if (activePt === 1) p1Angle = angle;
-        else p2Angle = angle;
+        if (distToCenter < 20) {
+            newX = cx;
+            newY = cy;
+        } else {
+            const angle = Math.atan2(my - cy, mx - cx);
+            newX = cx + r * Math.cos(angle);
+            newY = cy + r * Math.sin(angle);
+        }
+
+        if (activePt === 1) {
+            p1 = {x: newX, y: newY};
+        } else {
+            p2 = {x: newX, y: newY};
+        }
 
         updateLine();
     };
@@ -857,23 +877,31 @@ function checkAnswer() {
             break;
 
         case 'circle_interactive':
-            const dist = gameState.levelState.distToCenter; // distance of line to center
+            const dist = gameState.levelState.distToCenter;
+            const d1 = gameState.levelState.d1;
+            const d2 = gameState.levelState.d2;
+            const len = gameState.levelState.lineLength;
+
             if (gameState.levelState.task === 'diameter') {
-                if (dist < 10) { // close to center
+                if (dist < 10 && Math.abs(d1 - 100) < 5 && Math.abs(d2 - 100) < 5 && len > 180) {
                     isCorrect = true;
-                    feedbackMsg = `احسنت! قطر پاره‌خطی است که دقیقاً از مرکز عبور می‌کند.`;
+                    feedbackMsg = `احسنت! قطر پاره‌خطی است که دقیقاً از مرکز عبور می‌کند و دو سر آن روی محیط است.`;
+                } else if (dist < 10 && (d1 < 10 || d2 < 10)) {
+                    feedbackMsg = `اشتباه است. خطی که ساختی شعاع است. قطر باید از مرکز بگذرد و هر دو سر آن روی محیط باشد.`;
                 } else {
-                    feedbackMsg = `اشتباه است. خطی که ساختی از مرکز نمی‌گذرد (به آن وتر می‌گویند).`;
+                    feedbackMsg = `اشتباه است. خطی که ساختی از مرکز نمی‌گذرد (به آن وتر می‌گویند) یا دو سر آن روی محیط نیست.`;
                 }
             } else if (gameState.levelState.task === 'radius') {
-                // To make a radius with our 2 points on circle, the line isn't a radius, it's a chord.
-                // Wait, logic flaw in generator. Let's fix radius evaluation:
-                // For this simplistic engine, if dist > 0 it's a chord.
-                // Let's adapt: tell them they can't make a true radius with two points on edge,
-                // Accept if it's very small chord? No, let's just accept if they make it small enough.
-                if (dist > 80) { // Very small chord near edge, close enough to visually not being a diameter
+                const isP1Center = d1 < 10;
+                const isP2Center = d2 < 10;
+                const isP1Edge = Math.abs(d1 - 100) < 5;
+                const isP2Edge = Math.abs(d2 - 100) < 5;
+
+                if ((isP1Center && isP2Edge) || (isP2Center && isP1Edge)) {
                     isCorrect = true;
-                    feedbackMsg = `درست است. البته شعاع واقعی از مرکز تا محیط است.`;
+                    feedbackMsg = `درست است! شعاع دقیقاً از مرکز شروع می‌شود و به محیط می‌رسد.`;
+                } else if (dist < 10 && isP1Edge && isP2Edge) {
+                    feedbackMsg = `اشتباه است. این یک قطر است! شعاع فقط از مرکز تا محیط است.`;
                 } else {
                     feedbackMsg = `نه، شعاع باید از مرکز شروع شود و به محیط برسد.`;
                 }
