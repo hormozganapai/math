@@ -10,6 +10,7 @@
     "integer_valley",
     "probability_island",
     "statistics_city",
-    "interactive_algebra"
+    "interactive_algebra",
+    "kakuro"
   ]
 }

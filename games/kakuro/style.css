@@ -1,0 +1,298 @@
+/* =========================================================
+   Kakuro Game Styles
+   ========================================================= */
+
+.game-main {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.kakuro-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.game-panel {
+    background: var(--bg-alt);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 24px;
+    width: 100%;
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ردیف کنترل‌ها (سختی و آمار) */
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: var(--bg);
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+}
+
+.difficulty-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+
+.form-select {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+    background: var(--bg-alt);
+    color: var(--ink);
+    cursor: pointer;
+    outline: none;
+}
+.form-select:focus {
+    border-color: var(--blue);
+}
+
+.stats-group {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+}
+.stat-label {
+    color: var(--ink-soft);
+}
+.stat-value {
+    color: var(--violet);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+}
+
+/* تخته بازی */
+.board-container {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.kakuro-board {
+    display: grid;
+    gap: 2px;
+    background-color: var(--ink-soft);
+    border: 2px solid var(--ink-soft);
+    padding: 2px;
+    outline: none;
+    direction: ltr; /* Ensure LTR for numbers */
+    unicode-bidi: isolate;
+}
+
+.cell {
+    width: clamp(40px, 10vw, 60px);
+    height: clamp(40px, 10vw, 60px);
+    position: relative;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+/* سلول‌های سرنخ (سیاه) */
+.cell-clue {
+    background-color: #333;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    font-weight: bold;
+}
+[data-theme="dark"] .cell-clue {
+    background-color: #1a1a2e;
+}
+
+.cell-clue.split {
+    background: linear-gradient(to bottom right, transparent 48%, #888 49%, #888 51%, transparent 52%), #333;
+}
+[data-theme="dark"] .cell-clue.split {
+    background: linear-gradient(to bottom right, transparent 48%, #555 49%, #555 51%, transparent 52%), #1a1a2e;
+}
+
+
+.clue-h {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: #fff;
+}
+
+.clue-v {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    color: #fff;
+}
+
+.cell-clue.empty-clue {
+    background-color: #333;
+}
+[data-theme="dark"] .cell-clue.empty-clue {
+    background-color: #1a1a2e;
+}
+
+/* سلول‌های قابل بازی (سفید) */
+.cell-playable {
+    background-color: var(--bg-alt);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.cell-playable:hover {
+    background-color: var(--line);
+}
+
+.cell-playable.selected {
+    background-color: #E3F3FF;
+    box-shadow: inset 0 0 0 3px var(--blue);
+}
+[data-theme="dark"] .cell-playable.selected {
+    background-color: #1d3557;
+}
+
+/* وضعیت‌های خطا */
+.cell-playable.error {
+    color: var(--pink);
+    background-color: #FFE7F1;
+    box-shadow: inset 0 0 0 2px var(--pink);
+}
+[data-theme="dark"] .cell-playable.error {
+    background-color: #4a1c2f;
+}
+
+.cell-playable.hint-added {
+    color: var(--teal);
+}
+
+/* کیبورد مجازی */
+.virtual-numpad {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+}
+
+.numpad-btn {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 12px 0;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.numpad-btn:hover, .numpad-btn:active {
+    background: var(--line);
+    transform: translateY(2px);
+}
+
+.numpad-btn.erase-btn {
+    grid-column: span 5;
+    color: var(--pink);
+    font-size: 1.1rem;
+}
+
+/* دکمه‌های عملیاتی */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+.action-buttons .btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+}
+
+/* مُدال پیروزی */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(18, 20, 43, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--bg-alt);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--line);
+}
+
+.modal-content h2 {
+    color: var(--violet);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.modal-stats {
+    background: var(--bg);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin: 20px 0;
+    font-weight: bold;
+    color: var(--ink-soft);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* Media Queries */
+@media (min-width: 600px) {
+    .virtual-numpad {
+        grid-template-columns: repeat(10, 1fr);
+        max-width: 600px;
+    }
+    .numpad-btn.erase-btn {
+        grid-column: span 1;
+    }
+}
