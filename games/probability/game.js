@@ -15,7 +15,7 @@
     coin: {
       easy:   { label: 'آمدن «رو»',            theoretical: 0.5,  check: (r) => r === 'رو' },
       medium: { label: 'آمدن «پشت»',              theoretical: 0.5,  check: (r) => r === 'پشت' },
-      hard:   { label: 'آمدن «رو» سه بار پشت‌هم به‌صورت میانگین هر بلوک', theoretical: 0.5, check: (r) => r === 'رو' }
+      hard:   { label: 'آمدن «رو» یا «پشت»',    theoretical: 1.0,  check: (r) => r === 'رو' || r === 'پشت' }
     },
     die: {
       easy:   { label: 'آمدن عدد «۶»',           theoretical: 1 / 6, check: (r) => r === 6 },
