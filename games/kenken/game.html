@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بازی ریاضی کِن‌کِن | MathPlay</title>
+<meta name="description" content="بازی فکری و معمای ریاضی کن‌کن (KenKen) با سطوح مختلف.">
+<script src="../../js/theme.js"></script>
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/animation.css">
+<link rel="stylesheet" href="../../css/responsive.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="game-body">
+
+<header class="game-header">
+  <div class="container game-header-inner">
+    <a href="../../index.html" class="back-link">→ بازگشت به MathPlay</a>
+    <h1 class="game-title">🧩 بازی ریاضی کِن‌کِن</h1>
+    <div class="header-right-group">
+      <div class="timer-pill" id="timerDisplay">زمان: ۰۰:۰۰</div>
+      <div class="error-pill" id="errorCount">خطا: ۰</div>
+      <button class="theme-toggle-btn" id="themeToggle" type="button" title="تغییر تم روشن/تاریک">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main class="container game-main">
+
+  <section class="panel controls-panel">
+    <div class="controls-header">
+      <label for="difficultySelect">سطح بازی:</label>
+      <select id="difficultySelect" class="form-select">
+        <option value="easy">آسان (۴x۴)</option>
+        <option value="medium">متوسط (۵x۵)</option>
+        <option value="hard">سخت (۶x۶)</option>
+      </select>
+      <button class="btn btn-secondary" id="newGameBtn">شروع مجدد / پازل جدید</button>
+    </div>
+  </section>
+
+  <section class="panel board-panel">
+    <div class="board-wrapper">
+      <div id="kenken-board" class="kenken-grid"></div>
+    </div>
+  </section>
+
+  <section class="panel actions-panel">
+    <div class="action-buttons">
+      <button class="btn btn-primary" id="checkBtn">بررسی (Check)</button>
+      <button class="btn btn-secondary" id="hintBtn">راهنمایی (Hint)</button>
+      <button class="btn btn-danger" id="solveBtn">حل کامل (Solve)</button>
+    </div>
+  </section>
+
+  <section class="panel numpad-panel">
+    <div class="numpad" id="numpad">
+      <!-- Numpad buttons injected dynamically based on size -->
+    </div>
+  </section>
+
+</main>
+
+<!-- Victory Modal -->
+<div id="victoryModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>🎉 آفرین!</h2>
+    <p>شما پازل را با موفقیت حل کردید.</p>
+    <p id="victoryTime"></p>
+    <button class="btn btn-primary" id="closeModalBtn">بازی دوباره</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
