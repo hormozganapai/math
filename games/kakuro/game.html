@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پازل کاکورو | MathPlay</title>
+    <meta name="description" content="بازی فکری و پازل ریاضی کاکورو (Kakuro) - پر کردن جدول با اعداد ۱ تا ۹ بدون تکرار.">
+    <script src="../../js/theme.js"></script>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animation.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="game-body">
+
+<header class="game-header">
+    <div class="container game-header-inner">
+        <a href="../../index.html" class="back-link">→ بازگشت به MathPlay</a>
+        <h1 class="game-title">🧩 پازل کاکورو</h1>
+        <div class="header-right-group">
+            <button class="theme-toggle-btn" id="themeToggle" type="button" title="تغییر تم روشن/تاریک">🌙</button>
+        </div>
+    </div>
+</header>
+
+<main class="container game-main">
+    <div class="kakuro-layout">
+        <!-- پنل تنظیمات و اطلاعات -->
+        <div class="game-panel">
+            <div class="controls-row">
+                <div class="difficulty-selector">
+                    <label for="difficultySelect">سطح سختی:</label>
+                    <select id="difficultySelect" class="form-select">
+                        <option value="easy">آسان (۴×۴)</option>
+                        <option value="medium">متوسط (۶×۶)</option>
+                        <option value="hard">سخت (۸×۸)</option>
+                    </select>
+                </div>
+                <div class="stats-group">
+                    <div class="stat-box">
+                        <span class="stat-label">زمان:</span>
+                        <span id="timerDisplay" class="stat-value">۰۰:۰۰</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">حرکت:</span>
+                        <span id="movesDisplay" class="stat-value">۰</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تخته بازی -->
+            <div class="board-container">
+                <div id="kakuroBoard" class="kakuro-board" tabindex="0">
+                    <!-- سلول‌های جدول توسط جاوااسکریپت ساخته می‌شوند -->
+                </div>
+            </div>
+
+            <!-- صفحه کلید مجازی -->
+            <div class="virtual-numpad" id="virtualNumpad">
+                <button class="numpad-btn" data-val="1">۱</button>
+                <button class="numpad-btn" data-val="2">۲</button>
+                <button class="numpad-btn" data-val="3">۳</button>
+                <button class="numpad-btn" data-val="4">۴</button>
+                <button class="numpad-btn" data-val="5">۵</button>
+                <button class="numpad-btn" data-val="6">۶</button>
+                <button class="numpad-btn" data-val="7">۷</button>
+                <button class="numpad-btn" data-val="8">۸</button>
+                <button class="numpad-btn" data-val="9">۹</button>
+                <button class="numpad-btn erase-btn" data-val="0">پاک کن</button>
+            </div>
+
+            <!-- دکمه‌های عملیاتی -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="btnCheck">بررسی</button>
+                <button class="btn btn-secondary" id="btnHint">راهنمایی 💡</button>
+                <button class="btn btn-secondary" id="btnSolve">حل خودکار</button>
+                <button class="btn btn-secondary" id="btnReset">شروع مجدد 🔄</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- مُدال پیروزی -->
+    <div id="winModal" class="modal-overlay hidden">
+        <div class="modal-content bounce-in">
+            <h2>🎉 تبریک!</h2>
+            <p>تو موفق شدی پازل کاکورو را به درستی حل کنی!</p>
+            <div class="modal-stats">
+                <p>زمان: <span id="modalTime"></span></p>
+                <p>تعداد حرکت: <span id="modalMoves"></span></p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="btnNextLevel">پازل بعدی</button>
+                <button class="btn btn-secondary" id="btnCloseModal">بستن</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- اضافه کردن کانفتی برای انیمیشن پیروزی -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="../../js/score.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
