@@ -12,6 +12,7 @@
     "statistics_city",
     "interactive_algebra",
     "kenken",
-    "kakuro"
+    "kakuro",
+    "koenigsberg",
   ]
 }
