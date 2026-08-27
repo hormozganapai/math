@@ -1,3 +1,11 @@
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /games/8queens/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /js/score.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /games/8queens/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /css/responsive.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /css/animation.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /js/theme.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /games/8queens/game.js HTTP/1.1" 200 -
 127.0.0.1 - - [27/Aug/2026 10:30:31] "GET /games/koenigsberg/game.html HTTP/1.1" 200 -
 127.0.0.1 - - [27/Aug/2026 10:30:32] "GET /css/style.css HTTP/1.1" 200 -
 127.0.0.1 - - [27/Aug/2026 10:30:32] "GET /games/koenigsberg/style.css HTTP/1.1" 200 -
