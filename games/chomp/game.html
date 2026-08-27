@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی ریاضی چامپ | MathPlay</title>
+
+    <script src="../../js/theme.js"></script>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animation.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="logo" title="بازگشت به صفحه اصلی">
+                <span class="logo-badge">π</span>
+                Math<span class="brand-play">Play</span>
+            </a>
+            <div class="header-stats">
+                <button class="theme-toggle-btn" id="themeToggle" type="button" title="تغییر تم روشن/تاریک">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-layout">
+        <section class="game-area">
+            <div class="game-header">
+                <h1>بازی ریاضی چامپ 🍫</h1>
+
+                <div class="game-controls-panel">
+                    <div class="control-group">
+                        <label for="boardSize">اندازه تخته:</label>
+                        <select id="boardSize" class="input-field">
+                            <option value="3x4">سریع (۳ در ۴)</option>
+                            <option value="3x5" selected>کلاسیک (۳ در ۵)</option>
+                            <option value="4x6">استاندارد (۴ در ۶)</option>
+                            <option value="custom">سفارشی</option>
+                        </select>
+                        <div id="customSizeInputs" class="custom-inputs hidden">
+                            <input type="number" id="customRows" min="2" max="7" value="5" class="input-field size-input" placeholder="سطر">
+                            <span>×</span>
+                            <input type="number" id="customCols" min="2" max="7" value="5" class="input-field size-input" placeholder="ستون">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="gameMode">حالت بازی:</label>
+                        <select id="gameMode" class="input-field">
+                            <option value="pvp">دونفره (روی یک دستگاه)</option>
+                            <option value="ai-easy" selected>یک نفره (هوش مصنوعی آسان)</option>
+                            <option value="ai-hard">یک نفره (هوش مصنوعی سخت)</option>
+                        </select>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="btnNewGame" class="btn btn-primary">بازی جدید</button>
+                        <button id="btnUndo" class="btn btn-secondary" disabled>بازگشت حرکت</button>
+                        <button id="btnHint" class="btn btn-secondary">راهنمایی 💡</button>
+                        <button id="btnInsight" class="btn btn-secondary">تحلیل ریاضی 📐</button>
+                    </div>
+                </div>
+
+                <div class="turn-indicator" id="turnIndicator">
+                    نوبت بازیکن ۱ 🍫
+                </div>
+            </div>
+
+            <div class="board-container">
+                <div id="board" class="chomp-board"></div>
+            </div>
+        </section>
+
+        <!-- Educational Insight Drawer -->
+        <aside id="insightDrawer" class="insight-drawer hidden">
+            <div class="drawer-header">
+                <h3>تحلیل ریاضی و قضیه دزدی استراتژی</h3>
+                <button id="btnCloseInsight" class="btn-icon">✖</button>
+            </div>
+            <div class="drawer-content">
+                <div class="diagram-section">
+                    <h4>نمودار یانگ (حالت فعلی):</h4>
+                    <div id="youngDiagram" class="young-diagram-notation" dir="ltr">[]</div>
+                </div>
+                <div class="explanation-section">
+                    <p>در نظریه بازی‌های ترکیبی، بازی چامپ یک بازی منصفانه، متناهی و با اطلاعات کامل است.</p>
+                    <p>بر اساس <strong>قضیه دزدی استراتژی (Strategy Stealing)</strong> که توسط دیوید گیل در سال ۱۹۷۴ مطرح شد، بازیکن اول همیشه استراتژی برد دارد (به جز در حالت ۱x۱). اگر بازیکن دوم استراتژی بردی داشت، بازیکن اول می‌توانست با خوردن یک خانه اضافی (مثلاً پایین‌ترین خانه سمت راست) در حرکت اول خود، آن استراتژی را "بدزدد"، که این یک تناقض است.</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Victory/Defeat Modal -->
+    <div id="gameOverModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 id="modalTitle">پایان بازی!</h2>
+            <div id="modalMessage" class="modal-message"></div>
+            <div class="modal-actions">
+                <button id="btnModalNewGame" class="btn btn-primary">بازی دوباره</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            ساخته‌شده با ❤️ برای دانش‌آموزان ایران — MathPlay &copy; <span id="year"></span>
+        </div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="../../js/score.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
