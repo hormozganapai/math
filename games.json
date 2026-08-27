@@ -13,6 +13,6 @@
     "interactive_algebra",
     "kenken",
     "kakuro",
-    "koenigsberg"
+    "koenigsberg",
   ]
 }
