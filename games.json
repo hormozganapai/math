@@ -13,6 +13,7 @@
     "interactive_algebra",
     "kenken",
     "kakuro",
-    "hanoi"
+    "hanoi",
+    "kakuro",
   ]
 }
