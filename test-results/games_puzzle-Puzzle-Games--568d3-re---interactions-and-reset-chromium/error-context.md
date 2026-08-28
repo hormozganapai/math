@@ -23,24 +23,24 @@ Received:   0
 ```yaml
 - generic [active] [ref=e1]:
   - generic:
-    - generic: "2"
-    - generic: "8"
-    - generic: =
-    - generic: "2"
-    - generic: =
-    - generic: "1"
-    - generic: "6"
-    - generic: "1"
-    - generic: "1"
-    - generic: "8"
-    - generic: +
-    - generic: "1"
-    - generic: "1"
-    - generic: "7"
-    - generic: "7"
     - generic: "9"
-    - generic: "3"
+    - generic: =
+    - generic: =
+    - generic: =
+    - generic: =
+    - generic: "9"
+    - generic: "9"
     - generic: +
+    - generic: "5"
+    - generic: "6"
+    - generic: "2"
+    - generic: "6"
+    - generic: =
+    - generic: "8"
+    - generic: "4"
+    - generic: +
+    - generic: "4"
+    - generic: "1"
   - button "🌙" [ref=e3] [cursor=pointer]
   - generic [ref=e5]:
     - generic [ref=e6]: 🔮
