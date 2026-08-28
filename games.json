@@ -13,9 +13,10 @@
     "interactive_algebra",
     "kenken",
     "kakuro",
+    "hanoi",
     "nim",
     "15puzzle",
     "8queens",
-    "koenigsberg",
+    "koenigsberg"
   ]
 }

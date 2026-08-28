@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>برج هانوی | MathPlay</title>
+<script src="../../js/theme.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/animation.css">
+<link rel="stylesheet" href="hanoi.css">
+</head>
+<body>
+
+<header class="game-header">
+  <div class="container game-header-inner">
+    <a href="../../index.html" class="back-link" title="بازگشت به صفحه اصلی">🏠</a>
+    <div class="game-title">
+      <h1>برج هانوی</h1>
+      <div class="disk-selector">
+        <label for="diskCount">تعداد دیسک:</label>
+        <select id="diskCount">
+          <option value="3" selected>۳</option>
+          <option value="4">۴</option>
+          <option value="5">۵</option>
+          <option value="6">۶</option>
+          <option value="7">۷</option>
+          <option value="8">۸</option>
+        </select>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="infoBtn" title="تحلیل ریاضی و راهنما">ℹ️</button>
+      <button class="theme-toggle-btn" id="themeToggle" title="تغییر تم">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main class="game-container container">
+  <div class="stats-panel">
+    <div class="stat-box">
+      <span class="stat-label">حرکات:</span>
+      <span class="stat-value" id="moveCount">0</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-label">بهترین حالت:</span>
+      <span class="stat-value" id="optimalMoves">7</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-label">زمان:</span>
+      <span class="stat-value ltr-time" id="timer">00:00</span>
+    </div>
+  </div>
+
+  <div class="controls-panel">
+    <button class="btn btn-secondary" id="resetBtn">شروع مجدد 🔄</button>
+    <button class="btn btn-secondary" id="undoBtn" disabled>بازگشت حرکت ↩️</button>
+    <button class="btn btn-primary" id="autoSolveBtn">حل خودکار 🤖</button>
+  </div>
+
+  <div class="solver-controls hidden" id="solverControls">
+    <button class="icon-btn" id="stepBackBtn" title="گام قبلی">⏮️</button>
+    <button class="icon-btn" id="playPauseBtn" title="پخش / توقف">▶️</button>
+    <button class="icon-btn" id="stepForwardBtn" title="گام بعدی">⏭️</button>
+
+    <div class="speed-control">
+      <label for="speedSlider">سرعت:</label>
+      <input type="range" id="speedSlider" min="1" max="4" value="2">
+    </div>
+
+    <button class="btn btn-secondary" id="stopSolveBtn">توقف 🛑</button>
+  </div>
+
+  <div class="execution-log" id="executionLog" dir="rtl">
+    <!-- Log text goes here, e.g. Move disk 1 from A to C -->
+  </div>
+
+  <div class="board-area" id="boardArea">
+    <!-- Base platform -->
+    <div class="base-platform"></div>
+
+    <div class="rod-container" id="rod-0" data-rod="0">
+      <div class="rod-pole"></div>
+      <div class="rod-label">مبدأ (A)</div>
+      <div class="disks-wrapper" id="disks-0"></div>
+      <div class="rod-hitbox"></div>
+    </div>
+    <div class="rod-container" id="rod-1" data-rod="1">
+      <div class="rod-pole"></div>
+      <div class="rod-label">کمکی (B)</div>
+      <div class="disks-wrapper" id="disks-1"></div>
+      <div class="rod-hitbox"></div>
+    </div>
+    <div class="rod-container" id="rod-2" data-rod="2">
+      <div class="rod-pole"></div>
+      <div class="rod-label">مقصد (C)</div>
+      <div class="disks-wrapper" id="disks-2"></div>
+      <div class="rod-hitbox"></div>
+    </div>
+  </div>
+</main>
+
+<!-- Info Modal -->
+<div class="modal-overlay" id="infoModalOverlay"></div>
+<div class="modal" id="infoModal" role="dialog" aria-labelledby="infoTitle">
+  <button class="modal-close" id="closeInfoBtn" aria-label="بستن">&times;</button>
+  <h2 id="infoTitle">تحلیل ریاضی و راهنما</h2>
+  <div class="modal-content">
+    <p>در <strong>برج هانوی</strong>، هدف انتقال تمام دیسک‌ها از میله مبدأ به میله مقصد است.</p>
+    <h3>قوانین:</h3>
+    <ul>
+      <li>در هر حرکت فقط یک دیسک را می‌توان جابجا کرد.</li>
+      <li>فقط بالاترین دیسک هر میله قابل برداشتن است.</li>
+      <li>هرگز نمی‌توان دیسک بزرگتر را روی دیسک کوچکتر قرار داد.</li>
+    </ul>
+    <h3>تحلیل ریاضی:</h3>
+    <p>کمترین تعداد حرکت برای حل برج هانوی با <span class="ltr">N</span> دیسک از رابطه بازگشتی زیر به دست می‌آید:</p>
+    <div class="formula ltr">
+      T(N) = 2 &times; T(N-1) + 1
+    </div>
+    <p>با حل این رابطه، فرمول صریح زیر به دست می‌آید:</p>
+    <div class="formula ltr">
+      M(N) = 2<sup>N</sup> - 1
+    </div>
+    <p>به عنوان مثال، برای ۳ دیسک، به ۲<sup>۳</sup> - ۱ = ۷ حرکت نیاز است.</p>
+  </div>
+</div>
+
+<!-- Victory Modal -->
+<div class="modal-overlay" id="victoryModalOverlay"></div>
+<div class="modal" id="victoryModal" role="dialog" aria-labelledby="victoryTitle">
+  <h2 id="victoryTitle">آفرین! برج کامل شد 🏆</h2>
+  <div class="modal-content text-center">
+    <div class="victory-stats">
+      <p>تعداد حرکات شما: <strong id="victoryMoves">0</strong></p>
+      <p>کمترین حرکات ممکن: <strong id="victoryOptimal">0</strong></p>
+      <p>زمان: <strong id="victoryTime" class="ltr-time">00:00</strong></p>
+    </div>
+    <p id="victoryMessage" class="victory-msg"></p>
+    <button class="btn btn-primary mt-4" id="playAgainBtn">بازی دوباره</button>
+  </div>
+</div>
+
+<!-- Confetti container -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<script src="hanoi.js"></script>
+</body>
+</html>
