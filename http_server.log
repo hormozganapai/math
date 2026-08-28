@@ -1,3 +1,15 @@
+127.0.0.1 - - [27/Aug/2026 10:33:10] "GET /games/sprouts/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:10] "GET /games/sprouts/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:10] "GET /games/sprouts/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:10] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:51] "GET /games/sprouts/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:51] "GET /games/sprouts/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:51] "GET /games/sprouts/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:51] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:43] "GET /games/sprouts/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:43] "GET /games/sprouts/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:43] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:43] "GET /games/sprouts/game.js HTTP/1.1" 200 -
 127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /games/hex/game.html HTTP/1.1" 200 -
 127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /games/hex/style.css HTTP/1.1" 200 -
 127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /css/style.css HTTP/1.1" 200 -
