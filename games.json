@@ -13,6 +13,8 @@
     "interactive_algebra",
     "kenken",
     "kakuro",
-    "tangram"
+    "tangram",
+    "8queens",
+    "koenigsberg"
   ]
 }
