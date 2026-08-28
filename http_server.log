@@ -1,3 +1,11 @@
+127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /games/hex/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /games/hex/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /games/hex/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:40:07] "GET /games/hex/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:40:07] "GET /games/hex/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:40:07] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:40:07] "GET /games/hex/game.js HTTP/1.1" 200 -
 Traceback (most recent call last):
   File "<frozen runpy>", line 198, in _run_module_as_main
   File "<frozen runpy>", line 88, in _run_code
