@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی ریاضی پنتومینو | MathPlay</title>
+    <meta name="description" content="پازل پنتومینو - ۱۲ شکل مختلف را بچرخانید و در صفحه قرار دهید تا یک مستطیل کامل بسازید.">
+    <script src="../../js/theme.js"></script>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animation.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="game-body">
+
+<header class="game-header">
+    <div class="container game-header-inner">
+        <a href="../../index.html" class="back-link">→ بازگشت به MathPlay</a>
+        <h1 class="game-title">🧩 پازل پنتومینو</h1>
+        <div class="header-right-group">
+            <button class="theme-toggle-btn" id="themeToggle" type="button" title="تغییر تم روشن/تاریک">🌙</button>
+        </div>
+    </div>
+</header>
+
+<main class="container game-main">
+    <section class="game-top-panel card">
+        <div class="controls-row">
+            <div class="board-selector">
+                <label for="boardSize">اندازه صفحه:</label>
+                <select id="boardSize" class="input-select">
+                    <option value="6x10">۶ × ۱۰ (۲۳۳۹ جواب)</option>
+                    <option value="5x12">۵ × ۱۲ (۱۰۱۰ جواب)</option>
+                    <option value="4x15">۴ × ۱۵ (۳۶۸ جواب)</option>
+                    <option value="3x20">۳ × ۲۰ (۲ جواب)</option>
+                    <option value="8x8">۸ × ۸ (سوراخ ۴تایی)</option>
+                </select>
+            </div>
+            <div class="action-buttons">
+                <button id="btnResetTray" class="btn btn-secondary">شروع مجدد</button>
+                <button id="btnHint" class="btn btn-primary">راهنمایی</button>
+                <button id="btnSolve" class="btn btn-accent">حل خودکار</button>
+                <button id="btnClearBoard" class="btn btn-danger">پاک کردن تخته</button>
+            </div>
+        </div>
+        <div class="timer-display">
+            <span>زمان:</span> <span id="timer">۰۰:۰۰</span>
+        </div>
+    </section>
+
+    <div class="pentominoes-workspace">
+        <section class="board-area">
+            <div id="boardContainer" class="board-container">
+                <!-- Grid cells will be generated here -->
+            </div>
+
+            <div class="keyboard-hints">
+                <p>💡 راهنما: برای چرخش قطعات از <kbd>Space</kbd> یا <kbd>R</kbd> و برای قرینه کردن از <kbd>F</kbd> استفاده کنید.</p>
+            </div>
+        </section>
+
+        <aside class="pieces-tray">
+            <div class="tray-header">
+                <h3>قطعات باقی‌مانده</h3>
+                <span id="piecesRemaining" class="badge">۱۲ / ۱۲</span>
+            </div>
+            <div id="trayContainer" class="tray-container">
+                <!-- Pieces will be generated here -->
+            </div>
+        </aside>
+    </div>
+</main>
+
+<div id="victoryModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content card">
+        <h2 class="modal-title">🎉 عالی بود!</h2>
+        <p>شما موفق شدید پازل را حل کنید.</p>
+        <div class="stats-row">
+            <p>زمان: <span id="finalTime" class="highlight-text">--:--</span></p>
+        </div>
+        <div class="modal-actions">
+            <button id="btnPlayAgain" class="btn btn-primary btn-lg">دوباره بازی کن</button>
+            <a href="../../index.html" class="btn btn-secondary btn-lg">بازگشت به خانه</a>
+        </div>
+    </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
