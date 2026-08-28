@@ -21,6 +21,9 @@ test.describe('Navigation and Global UI', () => {
 
     // Verify game cards are present. games.json specifies 23 games, but test asks for "all 12 game cards exist". Let's just check there are multiple game cards
     const gameCards = page.locator('.game-card');
+
+    // Explicitly wait for at least one card to be attached and visible
+    await gameCards.first().waitFor({ state: 'visible', timeout: 5000 });
     expect(await gameCards.count()).toBeGreaterThan(0);
 
     // Check navigation to one game works
