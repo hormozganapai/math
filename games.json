@@ -13,6 +13,7 @@
     "interactive_algebra",
     "kenken",
     "kakuro",
+    "15puzzle",
     "8queens",
     "koenigsberg",
   ]
