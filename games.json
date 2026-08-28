@@ -14,6 +14,9 @@
     "kenken",
     "kakuro",
     "hanoi",
-    "kakuro",
+    "nim",
+    "15puzzle",
+    "8queens",
+    "koenigsberg"
   ]
 }

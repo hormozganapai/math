@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پل‌های کونیگسبرگ و مسیرهای اویلری</title>
+
+  <!-- فونت وزیرمتن -->
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+
+  <!-- استایل‌های سراسری پلتفرم -->
+  <link rel="stylesheet" href="../../css/style.css">
+
+  <!-- استایل‌های اختصاصی بازی -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- نوار پس‌زمینه شناور (سیگنیچر سایت) -->
+  <div class="number-field" id="numberField"></div>
+
+  <!-- هدر بازی -->
+  <header class="game-header">
+    <div class="header-inner container">
+      <div class="game-info">
+        <a href="../../index.html" class="back-btn" title="بازگشت به خانه">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+        <div class="logo">
+          <div class="logo-badge">🌉</div>
+          <h1>مسئله پل‌های کونیگسبرگ</h1>
+        </div>
+      </div>
+
+      <div class="controls-group">
+        <div class="stats-badge">زمان: <span id="timerDisplay">۰۰:۰۰</span></div>
+        <div class="stats-badge" id="edgesCountBadge">پل‌های پیموده شده: <span id="edgesCount">۰</span> / <span id="totalEdges">۷</span></div>
+        <button id="btnUndo" class="btn btn-secondary btn-sm">بازگشت حرکت</button>
+        <button id="btnReset" class="btn btn-secondary btn-sm">شروع مجدد</button>
+        <button id="btnHint" class="btn btn-secondary btn-sm">راهنمایی</button>
+        <button id="btnAutoSolve" class="btn btn-primary btn-sm">حل خودکار</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- محتوای اصلی -->
+  <main class="game-container container">
+
+    <!-- پنل انتخاب حالت و مراحل -->
+    <aside class="sidebar">
+      <div class="panel">
+        <h3>حالت‌های بازی</h3>
+        <div class="mode-selector">
+          <button class="mode-btn active" data-mode="1">چالش تاریخی (۱۷۳۶)</button>
+          <button class="mode-btn" data-mode="2">پازل‌های رسم یک‌خطی</button>
+          <button class="mode-btn" data-mode="3">کارگاه آزاد گراف</button>
+        </div>
+      </div>
+
+      <div class="panel" id="levelPanel" style="display: none;">
+        <h3>مراحل</h3>
+        <div class="level-grid" id="levelGrid">
+          <!-- دکمه‌های مراحل اینجا تولید می‌شوند -->
+        </div>
+      </div>
+
+      <div class="panel" id="sandboxPanel" style="display: none;">
+        <h3>ابزارهای کارگاه</h3>
+        <p class="desc">برای ایجاد راس (گره) کلیک کنید. برای ایجاد یال (پل) بین دو راس درگ کنید.</p>
+        <button id="btnClearSandbox" class="btn btn-secondary w-full">پاک‌کردن صفحه</button>
+        <div class="status-indicator mt-4" id="sandboxStatus">وضعیت: نامشخص</div>
+      </div>
+
+      <div class="panel historical-tools" id="historicalToolsPanel">
+        <h3>ابزارهای چالش</h3>
+        <button id="btnAddRemoveBridge" class="btn btn-secondary w-full">اضافه/حذف پل هشتم</button>
+      </div>
+
+      <div class="panel info-panel">
+        <button id="btnShowInfo" class="btn btn-secondary w-full">آموزش و تحلیل ریاضی</button>
+      </div>
+    </aside>
+
+    <!-- بوم رسم بازی -->
+    <section class="canvas-section">
+      <div class="canvas-wrapper">
+        <canvas id="gameCanvas"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- مدال آموزش و نظریه اویلر -->
+  <div id="infoModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h2>تولد نظریه گراف و قضیه لئونارد اویلر (۱۷۳۶)</h2>
+      <div class="modal-body">
+        <p>در سال ۱۷۳۶، لئونارد اویلر ثابت کرد که پیاده‌روی از روی تمام ۷ پل کونیگسبرگ بدون تکرار هیچ پلی <strong>غیرممکن</strong> است.</p>
+        <h3>درجه رئوس (گره‌ها)</h3>
+        <p>درجه یک راس برابر است با تعداد یال‌هایی (پل‌هایی) که به آن متصل هستند. در نقشه کونیگسبرگ:</p>
+        <ul>
+          <li>خشکی A: ۳ پل (درجه فرد)</li>
+          <li>خشکی B: ۳ پل (درجه فرد)</li>
+          <li>خشکی C: ۳ پل (درجه فرد)</li>
+          <li>خشکی D: ۵ پل (درجه فرد)</li>
+        </ul>
+        <h3>قوانین مسیرهای اویلری</h3>
+        <div class="rule-box">
+          <strong>مدار اویلری (Eulerian Circuit):</strong> مسیری که تمام یال‌ها را یکبار طی کند و به نقطه شروع برگردد.<br>
+          <em>شرط: تمام رئوس باید درجه زوج داشته باشند.</em>
+        </div>
+        <div class="rule-box">
+          <strong>مسیر اویلری (Eulerian Trail):</strong> مسیری که تمام یال‌ها را یکبار طی کند ولی لزوما به نقطه شروع برنگردد.<br>
+          <em>شرط: دقیقا ۲ راس باید درجه فرد داشته باشند (نقاط شروع و پایان).</em>
+        </div>
+        <p>چون در کونیگسبرگ <strong>۴ راس با درجه فرد</strong> داریم، یافتن مسیر اویلری غیرممکن است!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- مدال پیروزی -->
+  <div id="victoryModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content text-center">
+      <div class="victory-icon">🎉</div>
+      <h2>عالی بود!</h2>
+      <p>شما موفق شدید این گراف را به صورت یک‌خطی رسم کنید.</p>
+      <div class="mt-4">
+        <button id="btnNextLevel" class="btn btn-primary">مرحله بعد</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- اسکریپت‌ها -->
+  <script src="koenigsberg.js"></script>
+</body>
+</html>

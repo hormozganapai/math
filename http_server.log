@@ -16,3 +16,23 @@ Traceback (most recent call last):
   File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/socketserver.py", line 478, in server_bind
     self.socket.bind(self.server_address)
 OSError: [Errno 98] Address already in use
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /games/8queens/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /js/score.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /games/8queens/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /css/responsive.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /css/animation.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /js/theme.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /games/8queens/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:30:31] "GET /games/koenigsberg/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:30:32] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:30:32] "GET /games/koenigsberg/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:30:32] "GET /games/koenigsberg/koenigsberg.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:08] "GET /games/koenigsberg/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:08] "GET /games/koenigsberg/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:08] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:08] "GET /games/koenigsberg/koenigsberg.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:36:54] "GET /games/koenigsberg/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:36:54] "GET /games/koenigsberg/koenigsberg.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:36:54] "GET /games/koenigsberg/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:36:54] "GET /css/style.css HTTP/1.1" 200 -
