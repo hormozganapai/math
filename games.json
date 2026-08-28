@@ -13,6 +13,12 @@
     "interactive_algebra",
     "kenken",
     "kakuro",
-    "hex"
+    "hex",
+    "chomp",
+    "hanoi",
+    "nim",
+    "15puzzle",
+    "8queens",
+    "koenigsberg"
   ]
 }
