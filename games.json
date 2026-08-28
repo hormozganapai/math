@@ -13,6 +13,14 @@
     "interactive_algebra",
     "kenken",
     "kakuro",
-    "pentominoes"
+    "pentominoes",
+    "sprouts",
+    "hex",
+    "chomp",
+    "hanoi",
+    "nim",
+    "15puzzle",
+    "8queens",
+    "koenigsberg"
   ]
 }
