@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی ریاضی هِگز | MathPlay</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hex-game-container">
+        <!-- Header & Controls -->
+        <header class="game-header">
+            <h1 class="game-title">بازی ریاضی هِگز</h1>
+            <div class="controls-group">
+                <select id="boardSize" class="control-select">
+                    <option value="7">تخته ۷×۷</option>
+                    <option value="9" selected>تخته ۹×۹</option>
+                    <option value="11">تخته ۱۱×۱۱</option>
+                </select>
+                <select id="gameMode" class="control-select">
+                    <option value="pvp">دونفره (روی یک دستگاه)</option>
+                    <option value="ai-easy">یک‌نفره (آسان)</option>
+                    <option value="ai-hard">یک‌نفره (سخت)</option>
+                </select>
+                <button id="btnUndo" class="control-btn" title="بازگشت حرکت">↺ بازگشت</button>
+                <button id="btnSwap" class="control-btn" title="قانون معاوضه" style="display:none;">معاوضه (Swap)</button>
+                <button id="btnRestart" class="control-btn primary">شروع مجدد</button>
+                <a href="../../index.html" class="control-btn">خانه</a>
+            </div>
+        </header>
+
+        <!-- Status Banner -->
+        <div class="status-banner" id="statusBanner">
+            <span class="player-indicator red" id="turnIndicator"></span>
+            <span id="statusText">نوبت بازیکن ۱ (قرمز - بالا به پایین)</span>
+        </div>
+
+        <!-- Board Area -->
+        <main class="board-container">
+            <svg id="hexBoard" xmlns="http://www.w3.org/2000/svg"></svg>
+        </main>
+    </div>
+
+    <!-- Victory Modal -->
+    <div class="modal-overlay" id="victoryModal">
+        <canvas id="confetti"></canvas>
+        <div class="victory-modal">
+            <h2 id="victoryTitle">پیروزی!</h2>
+            <p id="victoryMessage">بازیکن ۱ برنده شد!</p>
+            <button id="btnPlayAgain" class="btn btn-primary">دوباره بازی کن</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

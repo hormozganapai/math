@@ -1,3 +1,41 @@
+127.0.0.1 - - [27/Aug/2026 10:33:10] "GET /games/sprouts/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:10] "GET /games/sprouts/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:10] "GET /games/sprouts/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:10] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:51] "GET /games/sprouts/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:51] "GET /games/sprouts/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:51] "GET /games/sprouts/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:33:51] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:43] "GET /games/sprouts/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:43] "GET /games/sprouts/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:43] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:34:43] "GET /games/sprouts/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /games/hex/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /games/hex/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:35:35] "GET /games/hex/game.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:40:07] "GET /games/hex/game.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:40:07] "GET /games/hex/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:40:07] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Aug/2026 10:40:07] "GET /games/hex/game.js HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/http/server.py", line 1329, in <module>
+    test(
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/http/server.py", line 1276, in test
+    with ServerClass(addr, HandlerClass) as httpd:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/http/server.py", line 1323, in server_bind
+    return super().server_bind()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/http/server.py", line 140, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
 127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /games/8queens/game.html HTTP/1.1" 200 -
 127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /css/style.css HTTP/1.1" 200 -
 127.0.0.1 - - [27/Aug/2026 10:29:37] "GET /js/score.js HTTP/1.1" 200 -

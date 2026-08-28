@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathPlay — پازل ۱۵</title>
+
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="number-field" id="numberField"></div>
+
+  <header class="site-header">
+    <div class="header-inner container">
+      <a href="../../index.html" class="logo">
+        <div class="logo-badge">M</div>
+        Math<span>Play</span>
+      </a>
+
+      <div class="header-stats">
+        <div class="header-stat">
+          <span class="stat-icon">⏱️</span>
+          <span id="timerDisplay">00:00</span>
+        </div>
+        <div class="header-stat">
+          <span class="stat-icon">🔄</span>
+          <span id="moveCountDisplay">0</span>
+        </div>
+        <button id="themeToggleBtn" class="theme-toggle-btn">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="game-main">
+    <div class="container game-container">
+      <div class="game-header">
+        <div class="game-title-area">
+          <div class="icon-badge">🧩</div>
+          <div>
+            <h1>پازل ۱۵</h1>
+            <p>اعداد را از چپ به راست مرتب کنید.</p>
+          </div>
+        </div>
+
+        <div class="game-controls">
+          <select id="gridSizeSelect" class="styled-select">
+            <option value="3">۸-پازل (آسان)</option>
+            <option value="4" selected>۱۵-پازل (کلاسیک)</option>
+            <option value="5">۲۴-پازل (سخت)</option>
+          </select>
+          <button id="restartBtn" class="btn btn-secondary">
+            <span>🔀</span> شروع مجدد
+          </button>
+        </div>
+      </div>
+
+      <div class="board-wrapper">
+        <div id="gameBoard" class="game-board">
+          <!-- Tiles will be inserted here by JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Victory Modal -->
+  <div id="victoryModal" class="modal-overlay">
+    <div class="modal-content victory-card">
+      <div class="victory-icon">🎉</div>
+      <h2>آفرین! پازل حل شد</h2>
+
+      <div class="victory-stats">
+        <div class="v-stat">
+          <span class="v-label">زمان:</span>
+          <span id="victoryTime" class="v-value">00:00</span>
+        </div>
+        <div class="v-stat">
+          <span class="v-label">تعداد حرکت:</span>
+          <span id="victoryMoves" class="v-value">0</span>
+        </div>
+      </div>
+
+      <button id="playAgainBtn" class="btn btn-primary">
+        دوباره بازی کن
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle logic (shared behavior)
+    const themeBtn = document.getElementById('themeToggleBtn');
+    if(localStorage.getItem('theme') === 'dark') {
+      document.body.setAttribute('data-theme', 'dark');
+      themeBtn.textContent = '☀️';
+    }
+    themeBtn.addEventListener('click', () => {
+      if(document.body.getAttribute('data-theme') === 'dark'){
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeBtn.textContent = '🌙';
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeBtn.textContent = '☀️';
+      }
+    });
+
+    // Decorative background numbers
+    const numField = document.getElementById('numberField');
+    for(let i=0; i<25; i++) {
+      const span = document.createElement('span');
+      span.textContent = Math.floor(Math.random() * 24) + 1;
+      span.style.left = `${Math.random() * 100}%`;
+      span.style.top = `${Math.random() * 100}%`;
+      span.style.fontSize = `${Math.random() * 2 + 1}rem`;
+      span.style.animationDuration = `${Math.random() * 20 + 20}s`;
+      span.style.animationDelay = `-${Math.random() * 20}s`;
+      numField.appendChild(span);
+    }
+  </script>
+  <script src="15puzzle.js"></script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+/* =========================================================
+   بازی پنتومینو - استایل‌های اختصاصی
+   ========================================================= */
+
+.pentominoes-workspace {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+    .pentominoes-workspace {
+        flex-direction: column;
+    }
+}
+
+/* پنل بالای بازی */
+.game-top-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.controls-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.board-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.input-select {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background-color: var(--bg-alt);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.input-select:focus {
+    outline: none;
+    border-color: var(--blue);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.timer-display {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+}
+
+/* صفحه بازی */
+.board-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-alt);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    min-height: 400px;
+}
+
+.board-container {
+    position: relative;
+    display: grid;
+    background-color: var(--bg);
+    border: 2px solid var(--ink-soft);
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    user-select: none;
+    box-shadow: var(--shadow-md);
+    direction: ltr; /* Important for grid coordinates */
+}
+
+.board-cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    background-color: transparent;
+    transition: background-color 0.2s;
+}
+
+.board-cell.hole {
+    background-color: var(--ink);
+    border-color: var(--ink);
+}
+
+/* سینی قطعات */
+.pieces-tray {
+    width: 350px;
+    background: var(--bg-alt);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
+
+@media (max-width: 900px) {
+    .pieces-tray {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+    }
+}
+
+.tray-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.tray-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--ink);
+}
+
+.badge {
+    background: var(--blue);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.tray-container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow-y: auto;
+    align-content: flex-start;
+    padding: 0.5rem;
+}
+
+/* قطعات پنتومینو */
+.pentomino-piece {
+    position: relative;
+    display: grid;
+    cursor: grab;
+    user-select: none;
+    touch-action: none; /* For pointer events */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    transition: transform 0.1s;
+    z-index: 10;
+    direction: ltr;
+}
+
+.pentomino-piece:active {
+    cursor: grabbing;
+}
+
+.pentomino-piece.dragging {
+    opacity: 0.9;
+    z-index: 100;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+    pointer-events: none; /* Let pointer events pass through to cells below */
+}
+
+/* بلوک‌های سازنده هر قطعه */
+.piece-block {
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 4px;
+}
+
+/* Empty block for matrix structure */
+.piece-block.empty {
+    border: none;
+    background: transparent !important;
+}
+
+/* Hover effect on board for dragging */
+.board-cell.drag-hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.board-cell.drag-invalid {
+    background-color: rgba(255, 71, 133, 0.3); /* --pink with opacity */
+}
+
+/* Colors for specific pieces */
+.piece-color-F { background-color: var(--violet); }
+.piece-color-I { background-color: var(--teal); }
+.piece-color-L { background-color: var(--orange); }
+.piece-color-P { background-color: var(--pink); }
+.piece-color-N { background-color: var(--yellow); }
+.piece-color-T { background-color: var(--blue); }
+.piece-color-U { background-color: var(--violet-dark); }
+.piece-color-V { background-color: #4CAF50; }
+.piece-color-W { background-color: #9C27B0; }
+.piece-color-X { background-color: #E91E63; }
+.piece-color-Y { background-color: #00BCD4; }
+.piece-color-Z { background-color: #FF9800; }
+
+.keyboard-hints {
+    margin-top: 1.5rem;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.keyboard-hints kbd {
+    background-color: var(--line);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+    color: var(--ink);
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(30, 33, 72, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay:not([aria-hidden="true"]) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    text-align: center;
+    background: var(--bg-alt);
+    padding: 3rem;
+    max-width: 400px;
+    width: 90%;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-overlay:not([aria-hidden="true"]) .modal-content {
+    transform: translateY(0);
+}
+
+.modal-title {
+    color: var(--violet);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.stats-row {
+    margin: 1.5rem 0;
+    font-size: 1.2rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}

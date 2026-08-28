@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بازی ریاضی اسپروتز</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <h1>🌱 بازی ریاضی اسپروتز</h1>
+    <div class="controls">
+      <select id="dot-count">
+        <option value="2">۲ نقطه</option>
+        <option value="3" selected>۳ نقطه</option>
+        <option value="4">۴ نقطه</option>
+        <option value="5">۵ نقطه</option>
+      </select>
+      <select id="game-mode">
+        <option value="pvp">دونفره (روی یک دستگاه)</option>
+        <option value="pve-easy">یک‌نفره (آسان)</option>
+        <option value="pve-medium">یک‌نفره (متوسط)</option>
+      </select>
+      <select id="play-style">
+        <option value="normal">حالت پیش‌فرض (Normal)</option>
+        <option value="misere">حالت معکوس (Misère)</option>
+      </select>
+      <button id="btn-new-game" class="btn-primary">بازی جدید</button>
+      <button id="btn-math-analysis">تحلیل ریاضی</button>
+      <button onclick="window.location.href='../../index.html'">بازگشت به خانه</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="status-banner" class="status-banner player1">نوبت بازیکن ۱ (آبی)</div>
+
+    <div class="canvas-container">
+      <canvas id="game-canvas"></canvas>
+    </div>
+
+    <div class="action-bar">
+      <button id="btn-undo">بازگشت حرکت</button>
+      <button id="btn-cancel-stroke">پاک کردن خط در حال رسم</button>
+      <button id="btn-help">راهنما</button>
+    </div>
+  </main>
+
+  <!-- Math Analysis Modal -->
+  <div id="math-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="close-math-modal">&times;</button>
+      <h2>قوانین توپولوژی و نظریه گراف در اسپروتز</h2>
+      <div class="math-content">
+        <p>اسپروتز یک بازی مبتنی بر <strong>گراف‌های مسطح</strong> است. هر نقطه یک رأس و هر خط یک یال است.</p>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div>تعداد حرکت‌های انجام شده</div>
+            <div id="stat-moves" class="stat-value">0</div>
+          </div>
+          <div class="stat-box">
+            <div>نقاط فعال (درجه &lt; ۳)</div>
+            <div id="stat-alive" class="stat-value">3</div>
+          </div>
+        </div>
+        <p>برای بازی با <span id="math-n-val" class="math-formula">N=3</span> نقطه، حداقل و حداکثر حرکت‌های ممکن:</p>
+        <div class="math-formula" id="math-bounds">2N &le; Moves &le; 3N - 1</div>
+        <p>این محدودیت‌ها از <strong>فرمول اویلر</strong> برای گراف‌های مسطح به دست می‌آیند.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="help-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="close-help-modal">&times;</button>
+      <h2>راهنمای بازی</h2>
+      <ul>
+        <li>هر بازیکن در نوبت خود خطی (منحنی) رسم می‌کند که دو نقطه را به هم متصل کند یا یک نقطه را به خودش (حلقه) وصل کند.</li>
+        <li>پس از رسم خط، یک نقطه جدید به‌طور خودکار روی آن قرار می‌گیرد.</li>
+        <li><strong>قانون درجه:</strong> هیچ نقطه‌ای نمی‌تواند بیش از ۳ خط متصل به خود داشته باشد.</li>
+        <li><strong>قانون تقاطع:</strong> خطوط نمی‌توانند یکدیگر را قطع کنند یا از روی نقاط دیگر بگذرند.</li>
+        <li>در <strong>حالت پیش‌فرض</strong>، بازیکنی که آخرین حرکت ممکن را انجام دهد برنده است.</li>
+        <li>در <strong>حالت معکوس (Misère)</strong>، بازیکنی که آخرین حرکت را انجام دهد بازنده است.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div id="gameover-modal" class="modal-overlay">
+    <div class="modal-content" style="text-align: center;">
+      <button class="modal-close" id="close-gameover-modal">&times;</button>
+      <h2 id="gameover-title" style="color: var(--violet-dark); font-size: 2rem;">پایان بازی!</h2>
+      <p id="gameover-message" style="font-size: 1.2rem; margin: 1rem 0;"></p>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div>کل حرکت‌ها</div>
+          <div id="gameover-moves" class="stat-value">0</div>
+        </div>
+      </div>
+      <button id="btn-play-again" class="btn-primary" style="margin-top: 1rem;">بازی دوباره</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

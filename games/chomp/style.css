@@ -1,0 +1,351 @@
+/* ==========================================================================
+   Chomp Game Layout CSS
+   ========================================================================== */
+
+/* Game Layout */
+.game-layout {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    min-height: calc(100vh - 150px);
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Header & Controls */
+.game-header {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.game-header h1 {
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.game-controls-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.input-field {
+    padding: 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.custom-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.size-input {
+    width: 60px;
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Turn Indicator */
+.turn-indicator {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--bg);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-full);
+    display: inline-block;
+    color: var(--ink);
+    transition: all 0.3s ease;
+}
+
+/* Board Container */
+.board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+    background-color: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: auto;
+}
+
+.chomp-board {
+    display: grid;
+    gap: 4px; /* Space between chocolate tiles */
+    background-color: #5c3a21; /* Dark chocolate background acting as wrapper */
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.1);
+}
+
+/* Insight Drawer */
+.insight-drawer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--bg);
+    border-left: 1px solid var(--line);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.insight-drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--line);
+    background-color: var(--bg-alt);
+}
+
+.drawer-header h3 {
+    margin: 0;
+    color: var(--ink);
+}
+
+.drawer-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.diagram-section {
+    margin-bottom: 2rem;
+    background-color: var(--bg-alt);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+}
+
+.young-diagram-notation {
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: var(--blue);
+    font-weight: bold;
+    text-align: left;
+    margin-top: 0.5rem;
+}
+
+.explanation-section p {
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+}
+
+/* Modals */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--bg);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: scale(0.9);
+}
+
+.modal-message {
+    font-size: 1.25rem;
+    margin: 1.5rem 0;
+    color: var(--ink-soft);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Chocolate Tile Styling */
+.choco-tile {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #8B4513 0%, #5C2E0B 100%);
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    box-shadow:
+        inset 4px 4px 5px rgba(255,255,255,0.2),
+        inset -4px -4px 5px rgba(0,0,0,0.5),
+        2px 2px 5px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Grooves inside the chocolate */
+.choco-tile::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 2px;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5), inset -1px -1px 2px rgba(255,255,255,0.1);
+}
+
+.choco-tile:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        inset 4px 4px 5px rgba(255,255,255,0.3),
+        inset -4px -4px 5px rgba(0,0,0,0.6),
+        4px 4px 8px rgba(0,0,0,0.4);
+}
+
+/* Hover highlights */
+.choco-tile.highlight {
+    background: linear-gradient(135deg, #d49565 0%, #a6581b 100%);
+    filter: brightness(1.2);
+}
+
+.choco-tile.highlight-poison {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    filter: brightness(1.2);
+}
+
+/* Poison Tile */
+.choco-tile.poison {
+    background: linear-gradient(135deg, #27ae60 0%, #2c3e50 100%);
+}
+
+.choco-tile.poison::after {
+    content: '☠️';
+    font-size: 1.8rem;
+    position: absolute;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Eaten tile (hidden but takes up grid space) */
+.choco-tile.eaten {
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.5);
+    opacity: 0;
+}
+
+/* Animation for eating */
+.choco-tile.eating {
+    animation: eatTile 0.3s forwards;
+}
+
+@keyframes eatTile {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.8) rotate(10deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0) rotate(20deg);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .game-controls-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .control-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .board-container {
+        padding: 1rem;
+    }
+}
