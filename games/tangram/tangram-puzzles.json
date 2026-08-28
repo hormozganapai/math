@@ -1,0 +1,61 @@
+{
+  "puzzles": [
+    {
+      "id": "square",
+      "category": "هندسی",
+      "name": "مربع بزرگ",
+      "difficulty": 1,
+      "pieces": [
+        {
+          "id": "lt1",
+          "x": 0,
+          "y": -100,
+          "rot": 0,
+          "flip": false
+        },
+        {
+          "id": "lt2",
+          "x": -100,
+          "y": 0,
+          "rot": 0,
+          "flip": false
+        },
+        {
+          "id": "mt",
+          "x": 100,
+          "y": 100,
+          "rot": 0,
+          "flip": false
+        },
+        {
+          "id": "sq",
+          "x": 100,
+          "y": 0,
+          "rot": 0,
+          "flip": false
+        },
+        {
+          "id": "st1",
+          "x": 150,
+          "y": -100,
+          "rot": 0,
+          "flip": false
+        },
+        {
+          "id": "st2",
+          "x": 50,
+          "y": 100,
+          "rot": 0,
+          "flip": false
+        },
+        {
+          "id": "para",
+          "x": -50,
+          "y": 150,
+          "rot": 0,
+          "flip": false
+        }
+      ]
+    }
+  ]
+}
