@@ -541,3 +541,25 @@ img{ max-width: 100%; display: block; }
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
 }
+
+/* =========================================================
+   Shared Components
+   ========================================================= */
+.shared-back-link {
+    display: inline-block;
+    padding: 10px 16px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all .2s ease;
+    margin-bottom: 12px;
+}
+.shared-back-link:hover {
+    color: var(--violet);
+    border-color: var(--violet);
+    transform: translateY(-2px);
+}
